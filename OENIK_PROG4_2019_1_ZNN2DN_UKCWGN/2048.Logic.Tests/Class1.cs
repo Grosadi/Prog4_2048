@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace _2048.Logic.Tests
 {
+   
     public class Class1
     {
     }
