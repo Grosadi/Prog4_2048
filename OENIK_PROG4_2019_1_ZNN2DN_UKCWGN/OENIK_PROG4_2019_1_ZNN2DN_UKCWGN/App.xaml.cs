@@ -10,7 +10,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 {
     /// <summary>
     /// Interaction logic for App.xaml
-    /// </summary>
+    //// </summary>
     public partial class App : Application
     {
     }
