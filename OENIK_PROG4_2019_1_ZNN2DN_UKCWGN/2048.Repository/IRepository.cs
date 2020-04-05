@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="IRepository.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace _2048.Repository
 {
-    interface IRepository
+    /// <summary>
+    /// Define the class Repository.
+    /// </summary>
+    public interface IRepository
     {
+        /// <summary>
+        /// Load the game from a file, saved game if possible, otherwise new game if that is the players desire.
+        /// </summary>
+        /// <param name="file">The file of the saved game, or new one.</param>
+       void LoadGame(string[] file);
     }
 }
