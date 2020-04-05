@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2048.Repository
+namespace _2048.Repository.Seged
 {
-    public class Class1
+    class Tile
     {
     }
 }
