@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="IGameLogic.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using _2048.Repository;
 
 namespace _2048.Logic
 {
-    interface IGameLogic
+    /// <summary>
+    /// Define the class GameLogic.
+    /// </summary>
+    public interface IGameLogic
     {
+        IGameModel
     }
 }

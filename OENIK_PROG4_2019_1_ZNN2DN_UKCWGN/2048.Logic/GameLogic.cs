@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2048.Logic.Tests
+namespace _2048.Logic
 {
-   
-    public class Class1
+    class GameLogic
     {
     }
 }
