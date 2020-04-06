@@ -35,5 +35,15 @@ namespace _2048.Repository
         /// Gets or sets a value indicating whether if the player wins the game.
         /// </summary>
         bool Gamewin { get; set; }
+
+        /// <summary>
+        /// Gets or sets the timer, to massure time.
+        /// </summary>
+        double Timer { get; set; }
+
+        /// <summary>
+        /// Gets or sets the duration of the match.
+        /// </summary>
+        int Matchtime { get; set; }
     }
 }
