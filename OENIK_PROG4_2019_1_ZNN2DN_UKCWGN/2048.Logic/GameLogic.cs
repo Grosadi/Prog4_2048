@@ -4,7 +4,9 @@
 
 namespace _2048.Logic
 {
+    using System;
     using _2048.Repository;
+    using _2048.Repository.Seged;
 
     /// <summary>
     /// Handles Business Logic.
@@ -34,51 +36,148 @@ namespace _2048.Logic
         public IRepository Repository { get; set; }
 
         /// <summary>
-        ///  The main method of the game, responsible for moving the tiles and spawning them in the right way.
+        /// The main method of the game, responsible for moving the tiles and spawning them in the right way.
         /// </summary>
-        public void Move()
-        {
-            throw new System.NotImplementedException();
-        }
+        /// <param name="countdownFrom">param used for calculation.</param>
+        /// <param name="yIncr">Y incrase.</param>
+        /// <param name="xIncr">x Incrase.</param>
+        /// <param name="side">The number of tile per side.</param>
+        /// <returns>with a raction for a move.</returns>
+        public bool Move(int countdownFrom, int yIncr, int xIncr, int side)
+            {
+                bool moved = false;
+                for (int i = 0; i < side * side; i++)
+                {
+                    int j = Math.Abs(countdownFrom - i);
+
+                    // we use this two variable for moving between tiles.
+                    int r = j / side;
+                    int c = j % side;
+
+                    // if the tile is empty we should continue.
+                    if (this.GameModel.Board[r, c] == null)
+                    {
+                        continue; // passes control to the next iteration of the enclosing while, do, for, or foreach statement in which it appears.
+                }
+
+                    // we make a move to the specified deriction
+                    int nextR = r + yIncr;
+                    int nextC = c + xIncr;
+
+                    // while the tiles can move or cominate with each other.
+                    while (nextR >= 0 && nextR < side && nextC >= 0 && nextC < side)
+                    {
+                        Tile next = this.GameModel.Board[nextR, nextC];
+                        Tile curr = this.GameModel.Board[r, c];
+
+                        // if newyt tile is null, we dontd do any combination , just move there
+                        if (next == null)
+                        {
+                            if (this.GameModel.CheckAvailableMoves)
+                            {
+                                return true;
+                            }
+
+                            this.GameModel.Board[nextR, nextC] = curr;
+                            this.GameModel.Board[r, c] = null;
+                            r = nextR;
+                            c = nextC;
+                            nextR += yIncr;
+                            nextC += xIncr;
+                            moved = true;
+                        }
+
+                        // if merge is possible with the next tile we should combinate them and move then
+                        else if (next.CanMergeWith(curr))
+                        {
+                            if (this.GameModel.CheckAvailableMoves)
+                            {
+                                return true;
+                            }
+
+                            // if the given tile has a bigger value than highest value we should overwrite the highest value.
+                            int value = next.MergeWith(curr);
+                            if (value > this.GameModel.Highest)
+                            {
+                                this.GameModel.Highest = value;
+                            }
+
+                            // after a move we incrase the score.
+                            this.GameModel.Score += value;
+                            this.GameModel.Board[r, c] = null;
+                            moved = true;
+                            break;
+                        }
+
+                        // else exit from the sequence.
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                // if move was possible
+                if (moved)
+                {
+                    this.Repository.ClearMerged();
+                    this.Repository.SpawnRandomTile();
+
+                    if (!this.Repository.MovesAvailable())
+                    {
+                        this.GameModel.GameOver = true;
+                    }
+                    else if (this.GameModel.Highest == 2048)
+                    {
+                        this.GameModel.Gamewin = true;
+                    }
+                }
+
+                return moved;
+            }
 
         /// <summary>
         /// Down.
         /// </summary>
-        public void MoveDown()
+        /// <returns>with a move downwards.</returns>
+        public bool MoveDown()
         {
-            throw new System.NotImplementedException();
+            return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 1, 0, this.GameModel.Gamesize);
         }
 
         /// <summary>
         /// Left.
         /// </summary>
-        public void MoveLeft()
+        /// <returns>with a move left.</returns>
+        public bool MoveLeft()
         {
-            throw new System.NotImplementedException();
+            return this.Move(0, 0, -1, this.GameModel.Gamesize);
         }
 
         /// <summary>
         /// Right.
         /// </summary>
-        public void MoveRight()
+        /// <returns>with a move right.</returns>
+        public bool MoveRight()
         {
-            throw new System.NotImplementedException();
+            return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 0, 1, this.GameModel.Gamesize);
         }
 
         /// <summary>
         /// Up.
         /// </summary>
-        public void MoveUp()
+        /// <returns>with a move to upwards.</returns>
+        public bool MoveUp()
         {
-            throw new System.NotImplementedException();
+            return this.Move(0, -1, 0, this.GameModel.Gamesize);
         }
 
         /// <summary>
-        /// Starts a new game.
+        /// Calls the withdrawal method from repository.
         /// </summary>
-        public void NewGame()
+        public void WithDrawal()
         {
-            throw new System.NotImplementedException();
+            this.Repository.Withdrawal();
         }
     }
 }

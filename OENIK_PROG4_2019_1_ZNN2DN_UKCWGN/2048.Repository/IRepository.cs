@@ -15,11 +15,12 @@ namespace _2048.Repository
         /// <param name="file">The file of the saved game, or new one.</param>
        void LoadGame(string[] file);
 
-      /// <summary>
-      /// Starts New Game.
-      /// </summary>
-      /// <param name="size">the size of the track.</param>
-       void NewGame(int size);
+        /// <summary>
+        /// starts new game.
+        /// </summary>
+        /// <param name="size">the size of the track( number of the tiles per side).</param>
+        /// <param name="matchTime">game duration.</param>
+       void NewGame(int size, int matchTime);
 
         /// <summary>
         /// To save the Game.
@@ -42,5 +43,10 @@ namespace _2048.Repository
         /// Set Merged attribution back to false for the whole board.
         /// </summary>
        void ClearMerged();
+
+        /// <summary>
+        /// During agame withhdrawal possible five times, it sets back the previosus state of the board.
+        /// </summary>
+       void Withdrawal();
     }
 }

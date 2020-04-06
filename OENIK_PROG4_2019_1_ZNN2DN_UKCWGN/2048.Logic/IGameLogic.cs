@@ -22,33 +22,42 @@ namespace _2048.Logic
         IRepository Repository { get; set; }
 
         /// <summary>
-        /// starts new game, an empty type.
-        /// </summary>
-        void NewGame();
-
-        /// <summary>
         /// Move Left.
         /// </summary>
-        void MoveLeft();
+        /// <returns>with a left move.</returns>
+        bool MoveLeft();
 
         /// <summary>
         /// Move Right.
         /// </summary>
-        void MoveRight();
+        /// <returns>with a right move.</returns>
+        bool MoveRight();
 
         /// <summary>
         /// Move UP.
         /// </summary>
-        void MoveUp();
+        /// <returns>with a move to upwards.</returns>
+        bool MoveUp();
 
         /// <summary>
         /// Move Down.
         /// </summary>
-        void MoveDown();
+        /// <returns>with a move to downwords.</returns>
+        bool MoveDown();
 
         /// <summary>
-        ///  The main method of the game, responsible for moving the tiles and spawning them in the right way.
+        /// The main method, it controls and moves the game.
         /// </summary>
-        void Move();
+        /// <param name="countdownFrom">inside pararam.</param>
+        /// <param name="yIncr">Y incrase.</param>
+        /// <param name="xIncr">X incrase.</param>
+        /// <param name="side">the number of tiles per side in the game.</param>
+        /// <returns>with the right reaction after a move.</returns>
+        bool Move(int countdownFrom, int yIncr, int xIncr, int side);
+
+        /// <summary>
+        /// Call the Withhdraw method from repository.
+        /// </summary>
+        void WithDrawal();
     }
 }

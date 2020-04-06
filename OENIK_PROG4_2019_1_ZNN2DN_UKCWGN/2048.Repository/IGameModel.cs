@@ -12,6 +12,11 @@ namespace _2048.Repository
     public interface IGameModel
     {
         /// <summary>
+        /// Gets or sets the size of the Game.
+        /// </summary>
+        int Gamesize { get; set; }
+
+        /// <summary>
         /// Gets or sets the board of the game.
         /// </summary>
         Tile[,] Board { get; set; }
@@ -22,7 +27,7 @@ namespace _2048.Repository
         int Score { get; set; }
 
         /// <summary>
-        /// Gets or sets highest score of all time.
+        /// Gets or sets the variable with the highest tile's value.
         /// </summary>
         int Highest { get; set; }
 
@@ -39,11 +44,16 @@ namespace _2048.Repository
         /// <summary>
         /// Gets or sets the timer, to massure time.
         /// </summary>
-        double Timer { get; set; }
+        double DeltaTime { get; set; }
 
         /// <summary>
-        /// Gets or sets the duration of the match.
+        /// Gets or sets the duration of the match. Possibilities: 2min, 5 min, 10min, endless.
         /// </summary>
         int Matchtime { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether checkaviable attribution.
+        /// </summary>
+        bool CheckAvailableMoves { get; set; }
     }
 }
