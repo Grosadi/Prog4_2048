@@ -14,5 +14,33 @@ namespace _2048.Repository
         /// </summary>
         /// <param name="file">The file of the saved game, or new one.</param>
        void LoadGame(string[] file);
+
+      /// <summary>
+      /// Starts New Game.
+      /// </summary>
+      /// <param name="size">the size of the track.</param>
+       void NewGame(int size);
+
+        /// <summary>
+        /// To save the Game.
+        /// </summary>
+        /// <param name="file">the locaation of the saved game.</param>
+       void SaveGame(string file);
+
+        /// <summary>
+        /// MovesAviable.
+        /// </summary>
+        /// <returns>If therer is any  more moves available.</returns>
+       bool MovesAvailable();
+
+        /// <summary>
+        /// After each move it places a new tile randomly.
+        /// </summary>
+       void SpawnRandomTile();
+
+        /// <summary>
+        /// Set Merged attribution back to false for the whole board.
+        /// </summary>
+       void ClearMerged();
     }
 }
