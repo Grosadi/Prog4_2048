@@ -1,0 +1,9 @@
+C:\Users\hp EliteBook\Documents\oenik_prog4_2019_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\bin\Debug\2048.Logic.dll
+C:\Users\hp EliteBook\Documents\oenik_prog4_2019_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\bin\Debug\2048.Logic.pdb
+C:\Users\hp EliteBook\Documents\oenik_prog4_2019_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\bin\Debug\2048.Repository.dll
+C:\Users\hp EliteBook\Documents\oenik_prog4_2019_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\bin\Debug\2048.Repository.pdb
+C:\Users\hp EliteBook\Documents\oenik_prog4_2019_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\obj\Debug\2048.Logic.csprojAssemblyReference.cache
+C:\Users\hp EliteBook\Documents\oenik_prog4_2019_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\obj\Debug\2048.Logic.csproj.CoreCompileInputs.cache
+C:\Users\hp EliteBook\Documents\oenik_prog4_2019_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\obj\Debug\2048.Logic.csproj.CopyComplete
+C:\Users\hp EliteBook\Documents\oenik_prog4_2019_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\obj\Debug\2048.Logic.dll
+C:\Users\hp EliteBook\Documents\oenik_prog4_2019_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\obj\Debug\2048.Logic.pdb
