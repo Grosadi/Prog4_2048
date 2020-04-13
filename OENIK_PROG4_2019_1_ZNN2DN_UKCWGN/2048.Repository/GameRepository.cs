@@ -1,17 +1,21 @@
-﻿using _2048.Repository.Seged;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="GameRepository.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace _2048.Repository
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using _2048.Repository.Seged;
+
     /// <summary>
     /// GameRepository.
     /// </summary>
-   public class GameRepository : IRepository
+    public class GameRepository : IRepository
     {
         private readonly Random rnd = new Random();
 
@@ -60,7 +64,8 @@ namespace _2048.Repository
         /// <returns>true if you have move aviable.</returns>
         public bool MovesAvailable()
         {
-            throw new NotImplementedException();
+            // EZT ÁT KÉNE TENNI A LOGICBA!!!!!
+            return true;
         }
 
         /// <summary>
