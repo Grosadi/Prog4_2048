@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.438
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OENIK_PROG4_2019_1_ZNN2DN_UKCWGN", "OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN.csproj", "{15FEB147-2E4F-4624-962E-BAEF71F8A809}"
 EndProject
@@ -15,6 +15,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2048.Repository", "2048.Repository\2048.Repository.csproj", "{7601BA12-02D1-411C-8B4F-891EBBEB5A9E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2048.Logic.Tests", "2048.Logic.Tests\2048.Logic.Tests.csproj", "{BBA52039-1B2F-4957-A24D-3F8749A97607}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2048.Data", "2048.Data\2048.Data.csproj", "{8185F7F0-15BB-4FCA-8A03-C9DF1DF66A34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{BBA52039-1B2F-4957-A24D-3F8749A97607}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBA52039-1B2F-4957-A24D-3F8749A97607}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBA52039-1B2F-4957-A24D-3F8749A97607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8185F7F0-15BB-4FCA-8A03-C9DF1DF66A34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8185F7F0-15BB-4FCA-8A03-C9DF1DF66A34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8185F7F0-15BB-4FCA-8A03-C9DF1DF66A34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8185F7F0-15BB-4FCA-8A03-C9DF1DF66A34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
