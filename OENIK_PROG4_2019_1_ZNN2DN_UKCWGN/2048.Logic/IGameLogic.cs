@@ -59,5 +59,11 @@ namespace _2048.Logic
         /// Call the Withhdraw method from repository.
         /// </summary>
         void WithDrawal();
+
+        /// <summary>
+        /// MovesAviable.
+        /// </summary>
+        /// <returns>If therer is any  more moves available.</returns>
+        bool MovesAvailable();
     }
 }

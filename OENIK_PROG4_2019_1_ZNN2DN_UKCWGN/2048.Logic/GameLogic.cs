@@ -123,7 +123,7 @@ namespace _2048.Logic
                     this.Repository.ClearMerged();
                     this.Repository.SpawnRandomTile();
 
-                    if (!this.Repository.MovesAvailable())
+                    if (!this.MovesAvailable())
                     {
                         this.GameModel.GameOver = true;
                     }
@@ -161,6 +161,15 @@ namespace _2048.Logic
         public bool MoveRight()
         {
             return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 0, 1, this.GameModel.Gamesize);
+        }
+
+        /// <summary>
+        /// MovesAviable.
+        /// </summary>
+        /// <returns>If therer is any  more moves available.</returns>
+        public bool MovesAvailable()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

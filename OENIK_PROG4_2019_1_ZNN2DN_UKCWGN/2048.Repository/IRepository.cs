@@ -29,12 +29,6 @@ namespace _2048.Repository
        void SaveGame(string file);
 
         /// <summary>
-        /// MovesAviable.
-        /// </summary>
-        /// <returns>If therer is any  more moves available.</returns>
-       bool MovesAvailable();
-
-        /// <summary>
         /// After each move it places a new tile randomly.
         /// </summary>
        void SpawnRandomTile();
