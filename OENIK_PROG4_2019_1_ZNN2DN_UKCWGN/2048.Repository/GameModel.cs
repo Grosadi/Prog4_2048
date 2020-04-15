@@ -20,6 +20,29 @@ namespace _2048.Repository
         private IRepository repo;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="GameModel"/> class.
+        /// Constructor to start new game.
+        /// </summary>
+        /// <param name="size">the num of tile per side.</param>
+        /// <param name="matchTime">the duration of the match.</param>
+        public GameModel(int size, int matchTime)
+        {
+            this.repo.NewGame(size, matchTime);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameModel"/> class.
+        /// Constructor to load last game.
+        /// </summary>
+        /// <param name="file">name of readable file.</param>
+        public GameModel(string file)
+        {
+            string[] lines = File.ReadAllLines(file);
+
+            this.repo.LoadGame(lines);
+        }
+
+        /// <summary>
         /// Gets or sets the actual size of the board.
         /// </summary>
         public int Gamesize { get; set; }
@@ -75,21 +98,5 @@ namespace _2048.Repository
         /// </summary>
         /// <param name="size">size of board.</param>
         /// <param name="matchTime">sets time of the game. If 0, then its an endless game.</param>
-        public GameModel(int size, int matchTime)
-        {
-            this.repo.NewGame(size, matchTime);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GameModel"/> class.
-        /// Constructor to load last game.
-        /// </summary>
-        /// <param name="file">name of readable file.</param>
-        public GameModel(string file)
-        {
-            string[] lines = File.ReadAllLines(file);
-
-            this.repo.LoadGame(lines);
-        }
     }
 }

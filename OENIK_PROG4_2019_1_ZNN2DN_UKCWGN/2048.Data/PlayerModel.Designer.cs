@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\hp EliteBook\Documents\oenik_prog4_2019_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Data\PlayerModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Bogdán István\Documents\oenik_prog4_2019_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Data\PlayerModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
