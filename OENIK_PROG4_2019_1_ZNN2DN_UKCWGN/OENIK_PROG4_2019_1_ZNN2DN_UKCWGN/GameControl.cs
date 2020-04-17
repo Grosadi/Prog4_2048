@@ -5,6 +5,7 @@
 namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 {
     using System.Windows;
+    using System.Windows.Media;
     using _2048.Logic;
     using _2048.Repository;
 
@@ -27,5 +28,26 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         /// renderer.
         /// </summary>
         GameRenderer renderer;
+
+        public GameControl()
+        {
+            Loaded += GameControl_Loaded;
+        }
+
+        private void GameControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.model = new GameModel();
+            this.renderer = new GameRenderer(this.model);
+
+            InvalidateVisual();
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            if (renderer != null)
+            {
+                drawingContext.DrawDrawing(renderer.BuildDrawing());
+            }
+        }
     }
 }
