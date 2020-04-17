@@ -17,29 +17,25 @@ namespace _2048.Repository
     /// </summary>
     public class GameModel : IGameModel
     {
-        private IRepository repo;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GameModel"/> class.
-        /// Constructor to start new game.
-        /// </summary>
-        /// <param name="size">the num of tile per side.</param>
-        /// <param name="matchTime">the duration of the match.</param>
-        public GameModel(int size, int matchTime)
+        // private IRepository repo;
+        /*public GameModel(int size, int matchTime)
         {
+            this.repo = new GameRepository();
             this.repo.NewGame(size, matchTime);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GameModel"/> class.
-        /// Constructor to load last game.
-        /// </summary>
-        /// <param name="file">name of readable file.</param>
-        public GameModel(string file)
+        }*/
+        /*public GameModel(string file)
         {
+            this.repo = new GameRepository();
             string[] lines = File.ReadAllLines(file);
 
             this.repo.LoadGame(lines);
+        }*/
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameModel"/> class.
+        /// </summary>
+        public GameModel()
+        {
         }
 
         /// <summary>
@@ -91,12 +87,5 @@ namespace _2048.Repository
         /// Gets or sets the number of Withdraws.
         /// </summary>
         public int WithdrawNum { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GameModel"/> class.
-        /// Constructor to start a new game.
-        /// </summary>
-        /// <param name="size">size of board.</param>
-        /// <param name="matchTime">sets time of the game. If 0, then its an endless game.</param>
     }
 }

@@ -55,5 +55,10 @@ namespace _2048.Repository
         /// Gets or sets a value indicating whether checkaviable attribution.
         /// </summary>
         bool CheckAvailableMoves { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of Withdraws.
+        /// </summary>
+        int WithdrawNum { get; set; }
     }
 }
