@@ -59,16 +59,6 @@ namespace _2048.Repository
         }
 
         /// <summary>
-        /// Checks.
-        /// </summary>
-        /// <returns>true if you have move aviable.</returns>
-        public bool MovesAvailable()
-        {
-            // EZT ÁT KÉNE TENNI A LOGICBA!!!!!
-            return true;
-        }
-
-        /// <summary>
         /// Starst new Game.
         /// </summary>
         /// <param name="size"> size of the board.</param>
