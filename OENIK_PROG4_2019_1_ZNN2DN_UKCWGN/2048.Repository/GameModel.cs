@@ -25,8 +25,8 @@ namespace _2048.Repository
         }*/
         /*public GameModel(string file)
         {
-            this.repo = new GameRepository();
-            string[] lines = File.ReadAllLines(file);
+            this.repo = new GameRepository();  !!!!!!!!!!!!
+            string[] lines = File.ReadAllLines(file); !!!!!!!!!!!!!!!!!!
 
             this.repo.LoadGame(lines);
         }*/
