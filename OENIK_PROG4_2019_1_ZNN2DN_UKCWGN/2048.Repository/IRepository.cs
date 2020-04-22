@@ -37,10 +37,5 @@ namespace _2048.Repository
         /// Set Merged attribution back to false for the whole board.
         /// </summary>
        void ClearMerged();
-
-        /// <summary>
-        /// During agame withhdrawal possible five times, it sets back the previosus state of the board.
-        /// </summary>
-       void Withdrawal();
     }
 }

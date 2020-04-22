@@ -1,4 +1,8 @@
-﻿namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
+﻿// <copyright file="GameRenderer.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 {
     using System;
     using System.Collections.Generic;
@@ -43,7 +47,7 @@
             DrawingGroup dg = new DrawingGroup();
 
             this.model.Gamesize = 4; // ezek a tesztelés miatt vannak itt, INNENTŐL-
-            this.model.Board = new Tile[this.model.Gamesize,this.model.Gamesize];
+            this.model.Board = new Tile[this.model.Gamesize, this.model.Gamesize];
 
             for (int i = 0; i < this.model.Board.GetLength(0); i++)
             {

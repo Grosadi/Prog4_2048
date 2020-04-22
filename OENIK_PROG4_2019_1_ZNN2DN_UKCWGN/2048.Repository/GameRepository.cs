@@ -115,20 +115,5 @@ namespace _2048.Repository
                 }
             }
         }
-
-        /// <summary>
-        /// Sets back the previous status of the game.
-        /// </summary>
-        public void Withdrawal()
-        {
-            if (this.Model.WithdrawNum != 0)
-            {
-                throw new NotImplementedException();
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
     }
 }

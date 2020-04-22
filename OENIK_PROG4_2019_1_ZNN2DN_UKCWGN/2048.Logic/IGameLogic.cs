@@ -56,7 +56,7 @@ namespace _2048.Logic
         bool Move(int countdownFrom, int yIncr, int xIncr, int side);
 
         /// <summary>
-        /// Call the Withhdraw method from repository.
+        /// sets the previous stage of the game, possible 5 times during game.
         /// </summary>
         void WithDrawal();
 

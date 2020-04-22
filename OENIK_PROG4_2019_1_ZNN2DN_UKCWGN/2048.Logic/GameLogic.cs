@@ -186,7 +186,7 @@ namespace _2048.Logic
         /// </summary>
         public void WithDrawal()
         {
-            this.Repository.Withdrawal();
+            new NotImplementedException();
         }
     }
 }
