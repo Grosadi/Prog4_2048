@@ -17,21 +17,25 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         /// <summary>
         /// logic.
         /// </summary>
-        GameLogic logic;
+        private GameLogic logic;
 
         /// <summary>
         /// model.
         /// </summary>
-        GameModel model;
+        private GameModel model;
 
         /// <summary>
         /// renderer.
         /// </summary>
-        GameRenderer renderer;
+        private GameRenderer renderer;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameControl"/> class.
+        /// 
+        /// </summary>
         public GameControl()
         {
-            Loaded += GameControl_Loaded;
+            this.Loaded += this.GameControl_Loaded;
         }
 
         private void GameControl_Loaded(object sender, RoutedEventArgs e)
@@ -39,14 +43,18 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             this.model = new GameModel();
             this.renderer = new GameRenderer(this.model);
 
-            InvalidateVisual();
+            this.InvalidateVisual();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="drawingContext"D></param>
         protected override void OnRender(DrawingContext drawingContext)
         {
-            if (renderer != null)
+            if (this.renderer != null)
             {
-                drawingContext.DrawDrawing(renderer.BuildDrawing());
+                drawingContext.DrawDrawing(this.renderer.BuildDrawing());
             }
         }
     }
