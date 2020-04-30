@@ -46,14 +46,15 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         {
             DrawingGroup dg = new DrawingGroup();
 
-            this.model.Gamesize = 4; // ezek a tesztelés miatt vannak itt, INNENTŐL-
+            this.model.Gamesize = 5; // ezek a tesztelés miatt vannak itt, INNENTŐL-
             this.model.Board = new Tile[this.model.Gamesize, this.model.Gamesize];
+            this.model.Score = 1204235;
 
             for (int i = 0; i < this.model.Board.GetLength(0); i++)
             {
                 for (int j = 0; j < this.model.Board.GetLength(1); j++)
                 {
-                    this.model.Board[i, j] = new Tile(16);
+                    this.model.Board[i, j] = new Tile(4096);
                 }
             } // - IDÁIG
 
@@ -75,6 +76,9 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 }
             }
 
+            dg.Children.Add(this.GetScore());
+            dg.Children.Add(this.GetScoreValue());
+
             return dg;
         }
 
@@ -87,7 +91,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             if (this.OldBackground == null)
             {
                 this.OldBackground = new GeometryDrawing(
-                    Brushes.Black,
+                    Brushes.White,
                     null,
                     new RectangleGeometry(new Rect(0, 0, this.width, this.height)));
             }
@@ -104,11 +108,10 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         /// <returns>The curret tile as a Drawing.</returns>
         public Drawing GetTile(Tile tile, int i, int j)
         {
-            int x = i * (this.width / this.model.Gamesize);
-            int y = j * (this.height / this.model.Gamesize);
+            int x = (i * (this.width / this.model.Gamesize)) + 5;
+            int y = (j * (this.width / this.model.Gamesize)) + 100;
 
-            int tileWidth = this.width / this.model.Gamesize;
-            int tileHeight = this.height / this.model.Gamesize;
+            int tileSize = this.width / this.model.Gamesize;
 
             if (tile.Value != 0)
             {
@@ -116,7 +119,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 dg.Children.Add(new GeometryDrawing(
                    this.ValueToBackgroundBrush(tile.Value),
                    new Pen(Brushes.Black, 2),
-                   new RectangleGeometry(new Rect(x, y, tileWidth, tileHeight), 15, 15)));
+                   new RectangleGeometry(new Rect(x, y, tileSize, tileSize), 15, 15)));
 
                 FontFamilyConverter ffc = new FontFamilyConverter();
                 FontFamily fontFamily = (FontFamily)ffc.ConvertFromString("Helvetica Neue");
@@ -130,11 +133,11 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                     Brushes.Red);
 
                 dg.Children.Add(new GeometryDrawing(
-                    null,
-                    new Pen(Brushes.Red, 2),
+                    Brushes.Red,
+                    new Pen(Brushes.Red, 1),
                     fm.BuildGeometry(new Point(
-                        x + (tileWidth / 2) - (fm.Width / 2),
-                        y + (tileHeight / 2) - (fm.Height / 2)))));
+                        x + (tileSize / 2) - (fm.Width / 2),
+                        y + (tileSize / 2) - (fm.Height / 2)))));
 
                 return dg;
             }
@@ -142,7 +145,51 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             return new GeometryDrawing(
                 Brushes.LightGray,
                 new Pen(Brushes.Black, 2),
-                new RectangleGeometry(new Rect(x, y, tileWidth, tileHeight)));
+                new RectangleGeometry(new Rect(x, y, tileSize, tileSize)));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public Drawing GetScoreValue()
+        {
+            FormattedText scoreFM = new FormattedText(
+                this.model.Score.ToString(),
+                System.Globalization.CultureInfo.CurrentCulture,
+                FlowDirection.LeftToRight,
+                new Typeface("Arial"),
+                24,
+                Brushes.Gold);
+
+            double y = (this.width / 2) - ((this.model.Score.ToString().Length * 12) / 2);
+
+            GeometryDrawing score = new GeometryDrawing(
+                null,
+                new Pen(Brushes.Gold, 2),
+                scoreFM.BuildGeometry(new Point(y, 50)));
+
+            return score;
+        }
+
+        public Drawing GetScore()
+        {
+            FormattedText scoreFM = new FormattedText(
+                "Score",
+                System.Globalization.CultureInfo.CurrentCulture,
+                FlowDirection.LeftToRight,
+                new Typeface("Arial"),
+                24,
+                Brushes.Gold);
+
+            double y = (this.width / 2) - ((5 * 12) / 2);
+
+            GeometryDrawing score = new GeometryDrawing(
+                null,
+                new Pen(Brushes.Gold, 2),
+                scoreFM.BuildGeometry(new Point(y, 10)));
+
+            return score;
         }
 
         /// <summary>
@@ -176,6 +223,8 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                     return (SolidColorBrush)new BrushConverter().ConvertFrom("#EDC53F");
                 case 2048:
                     return (SolidColorBrush)new BrushConverter().ConvertFrom("#EEC22E");
+                case 4096:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#BEEE2E");
                 default:
                     return (SolidColorBrush)new BrushConverter().ConvertFrom("#3D3A33");
             }

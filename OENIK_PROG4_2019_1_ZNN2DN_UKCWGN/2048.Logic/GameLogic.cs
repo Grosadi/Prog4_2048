@@ -169,7 +169,10 @@ namespace _2048.Logic
         /// <returns>If therer is any  more moves available.</returns>
         public bool MovesAvailable()
         {
-            throw new NotImplementedException();
+            this.GameModel.CheckAvailableMoves = true;
+            bool movesAvailable = this.MoveLeft() || this.MoveRight() || this.MoveUp() || this.MoveDown();
+            this.GameModel.CheckAvailableMoves = false;
+            return movesAvailable;
         }
 
         /// <summary>

@@ -5,6 +5,7 @@
 namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 {
     using System.Windows;
+    using System.Windows.Input;
     using System.Windows.Media;
     using _2048.Logic;
     using _2048.Repository;
@@ -36,6 +37,20 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         public GameControl()
         {
             this.Loaded += this.GameControl_Loaded;
+            this.KeyDown += this.GameControl_KeyDown;
+        }
+
+        private void GameControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Left: this.logic.MoveLeft(); break;
+                case Key.Right: this.logic.MoveRight(); break;
+                case Key.Up: this.logic.MoveUp(); break;
+                case Key.Down: this.logic.MoveDown(); break;
+            }
+
+            this.InvalidateVisual();
         }
 
         private void GameControl_Loaded(object sender, RoutedEventArgs e)
