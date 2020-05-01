@@ -16,6 +16,11 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
     public class GameControl : FrameworkElement
     {
         /// <summary>
+        /// repo.
+        /// </summary>
+        private GameRepository repo;
+
+        /// <summary>
         /// logic.
         /// </summary>
         private GameLogic logic;
@@ -48,6 +53,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 case Key.Right: this.logic.MoveRight(); break;
                 case Key.Up: this.logic.MoveUp(); break;
                 case Key.Down: this.logic.MoveDown(); break;
+                case Key.Space: this.logic.WithDrawal(); break;
             }
 
             this.InvalidateVisual();
@@ -55,7 +61,9 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 
         private void GameControl_Loaded(object sender, RoutedEventArgs e)
         {
+            this.repo = new GameRepository();
             this.model = new GameModel();
+            this.logic = new GameLogic(this.model, this.repo);
             this.renderer = new GameRenderer(this.model);
 
             this.InvalidateVisual();

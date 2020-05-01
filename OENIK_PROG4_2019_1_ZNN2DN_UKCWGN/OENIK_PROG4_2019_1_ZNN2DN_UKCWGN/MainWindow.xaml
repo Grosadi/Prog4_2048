@@ -5,6 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OENIK_PROG4_2019_1_ZNN2DN_UKCWGN"
         mc:Ignorable="d"
-        Title="MainWindow" Width="435.438" Height="550">
-    <local:GameControl/>
+        Title="2048" Icon="Blackvariant-Button-Ui-Requests-2-2048.ico" Width="430.438" Height="550">
+    <Grid Background="LightGoldenrodYellow">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.7*"/>
+        </Grid.RowDefinitions>
+        <Image Height="200" Source="2048.png" VerticalAlignment="Top"/>
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <TextBlock Text="Game Area Size" Margin="0,10,0,0" HorizontalAlignment="Center" FontSize="16" Foreground="Gold"/>
+            <Slider x:Name="size" Minimum="3" Maximum="5" TickFrequency="1" IsSnapToTickEnabled="True" Width="200" Value="4"/>
+            <TextBlock Text="{Binding ElementName=size,Path=Value}" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="Gold"/>
+            <TextBlock Text="Timer" Margin="0,10,0,0" HorizontalAlignment="Center" FontSize="16" Foreground="Gold"/>
+            <Slider x:Name="time" Minimum="0" Maximum="180" TickFrequency="10" IsSnapToTickEnabled="True" Width="350" Value="0"/>
+            <TextBlock Text="{Binding ElementName=time,Path=Value}" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="Gold"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <Button Content="New Game" Width="200" Margin="10" BorderThickness="0" Background="Transparent" FontSize="18" Foreground="Gold" FontWeight="DemiBold"/>
+            <Button Content="Load Game" Width="200" Margin="10" BorderThickness="0" Background="Transparent" FontSize="18" Foreground="Gold" FontWeight="DemiBold"/>
+            <Button Content="High Scores" Width="200" Margin="10" BorderThickness="0" Background="Transparent" FontSize="18" Foreground="Gold" FontWeight="DemiBold"/>
+        </StackPanel>
+    </Grid>
 </Window>

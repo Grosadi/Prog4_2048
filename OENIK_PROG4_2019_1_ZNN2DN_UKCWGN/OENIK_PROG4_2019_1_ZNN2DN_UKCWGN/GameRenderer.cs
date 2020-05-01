@@ -39,6 +39,16 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         public Drawing OldBackground { get; set; }
 
         /// <summary>
+        /// Gets or sets the score formatted text.
+        /// </summary>
+        public Drawing OldScore { get; set; }
+
+        /// <summary>
+        /// Gets or sets the withdraw formatted text.
+        /// </summary>
+        public Drawing OldWithDraw { get; set; }
+
+        /// <summary>
         /// This method is responsible for Drawing.
         /// </summary>
         /// <returns>A group of drawings.</returns>
@@ -46,9 +56,10 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         {
             DrawingGroup dg = new DrawingGroup();
 
-            this.model.Gamesize = 5; // ezek a tesztelés miatt vannak itt, INNENTŐL-
+            this.model.Gamesize = 4; // ezek a tesztelés miatt vannak itt, INNENTŐL-
             this.model.Board = new Tile[this.model.Gamesize, this.model.Gamesize];
             this.model.Score = 1204235;
+            this.model.WithdrawNum = 5;
 
             for (int i = 0; i < this.model.Board.GetLength(0); i++)
             {
@@ -78,6 +89,8 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 
             dg.Children.Add(this.GetScore());
             dg.Children.Add(this.GetScoreValue());
+            dg.Children.Add(this.GetWithDrawal());
+            dg.Children.Add(this.GetWithDrawalNum());
 
             return dg;
         }
@@ -174,7 +187,9 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 
         public Drawing GetScore()
         {
-            FormattedText scoreFM = new FormattedText(
+            if (this.OldScore == null)
+            {
+                FormattedText scoreFM = new FormattedText(
                 "Score",
                 System.Globalization.CultureInfo.CurrentCulture,
                 FlowDirection.LeftToRight,
@@ -182,14 +197,54 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 24,
                 Brushes.Gold);
 
-            double y = (this.width / 2) - ((5 * 12) / 2);
+                double x = (this.width / 2) - ((5 * 12) / 2);
 
-            GeometryDrawing score = new GeometryDrawing(
+                this.OldScore = new GeometryDrawing(
+                    null,
+                    new Pen(Brushes.Gold, 2),
+                    scoreFM.BuildGeometry(new Point(x, 10)));
+            }
+
+            return this.OldScore;
+        }
+
+        public Drawing GetWithDrawal()
+        {
+            if (this.OldWithDraw == null)
+            {
+                FormattedText fm = new FormattedText(
+                "Press space\nto withdraw!",
+                System.Globalization.CultureInfo.CurrentCulture,
+                FlowDirection.LeftToRight,
+                new Typeface("Arial"),
+                20,
+                Brushes.Gold);
+
+                this.OldWithDraw = new GeometryDrawing(
+                    null,
+                    new Pen(Brushes.Gold, 1),
+                    fm.BuildGeometry(new Point(5, 5)));
+            }
+
+            return this.OldWithDraw;
+        }
+
+        public Drawing GetWithDrawalNum()
+        {
+            FormattedText fm = new FormattedText(
+                this.model.WithdrawNum.ToString(),
+                System.Globalization.CultureInfo.CurrentCulture,
+                FlowDirection.LeftToRight,
+                new Typeface("Arial"),
+                20,
+                Brushes.Gold);
+
+            GeometryDrawing wd = new GeometryDrawing(
                 null,
-                new Pen(Brushes.Gold, 2),
-                scoreFM.BuildGeometry(new Point(y, 10)));
+                new Pen(Brushes.Gold, 1),
+                fm.BuildGeometry(new Point(50, 50)));
 
-            return score;
+            return wd;
         }
 
         /// <summary>
