@@ -49,6 +49,11 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         public Drawing OldWithDraw { get; set; }
 
         /// <summary>
+        /// Gets or sets the time formatted text.
+        /// </summary>
+        public Drawing OldTime { get; set; }
+
+        /// <summary>
         /// This method is responsible for Drawing.
         /// </summary>
         /// <returns>A group of drawings.</returns>
@@ -91,6 +96,8 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             dg.Children.Add(this.GetScoreValue());
             dg.Children.Add(this.GetWithDrawal());
             dg.Children.Add(this.GetWithDrawalNum());
+            dg.Children.Add(this.GetTime());
+            dg.Children.Add(this.GetTimeValue());
 
             return dg;
         }
@@ -245,6 +252,45 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 fm.BuildGeometry(new Point(50, 50)));
 
             return wd;
+        }
+
+        public Drawing GetTime()
+        {
+            if (this.OldTime == null)
+            {
+                FormattedText fm = new FormattedText(
+                "Time",
+                System.Globalization.CultureInfo.CurrentCulture,
+                FlowDirection.LeftToRight,
+                new Typeface("Arial"),
+                20,
+                Brushes.Gold);
+
+                this.OldTime = new GeometryDrawing(
+                    null,
+                    new Pen(Brushes.Gold, 1),
+                    fm.BuildGeometry(new Point(this.width - (5 * 10), 5)));
+            }
+
+            return this.OldTime;
+        }
+
+        public Drawing GetTimeValue()
+        {
+                FormattedText fm = new FormattedText(
+                this.model.DeltaTime.ToString(),
+                System.Globalization.CultureInfo.CurrentCulture,
+                FlowDirection.LeftToRight,
+                new Typeface("Arial"),
+                20,
+                Brushes.Gold);
+
+                GeometryDrawing time = new GeometryDrawing(
+                    null,
+                    new Pen(Brushes.Gold, 1),
+                    fm.BuildGeometry(new Point(this.width - 35, 30)));
+
+                return time;
         }
 
         /// <summary>
