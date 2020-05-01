@@ -22,9 +22,9 @@
             <TextBlock Text="{Binding ElementName=time,Path=Value}" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="Gold"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Vertical">
-            <Button Content="New Game" Width="200" Margin="10" BorderThickness="0" Background="Transparent" FontSize="18" Foreground="Gold" FontWeight="DemiBold"/>
-            <Button Content="Load Game" Width="200" Margin="10" BorderThickness="0" Background="Transparent" FontSize="18" Foreground="Gold" FontWeight="DemiBold"/>
-            <Button Content="High Scores" Width="200" Margin="10" BorderThickness="0" Background="Transparent" FontSize="18" Foreground="Gold" FontWeight="DemiBold"/>
+            <Button Content="New Game" Click="NewGameButton_Click" Width="200" Margin="10" BorderThickness="0" Background="Transparent" FontSize="18" Foreground="Gold" FontWeight="DemiBold"/>
+            <Button Content="Load Game" Click="LoadGameButton_Click" Width="200" Margin="10" BorderThickness="0" Background="Transparent" FontSize="18" Foreground="Gold" FontWeight="DemiBold"/>
+            <Button Content="High Scores" Click="HighScoreButton_Click" Width="200" Margin="10" BorderThickness="0" Background="Transparent" FontSize="18" Foreground="Gold" FontWeight="DemiBold"/>
         </StackPanel>
     </Grid>
 </Window>
