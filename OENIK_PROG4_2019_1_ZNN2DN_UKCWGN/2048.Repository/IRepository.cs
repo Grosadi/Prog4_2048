@@ -13,7 +13,7 @@ namespace _2048.Repository
         /// Load the game from a file, saved game if possible, otherwise new game if that is the players desire.
         /// </summary>
         /// <param name="file">The file of the saved game, or new one.</param>
-       void LoadGame(string[] file);
+       void LoadGame(string file);
 
         /// <summary>
         /// starts new game.

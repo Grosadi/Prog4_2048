@@ -38,9 +38,11 @@ namespace _2048.Repository
         /// <summary>
         /// Load the last game from file.
         /// </summary>
-        /// <param name="file">Rows from the file.</param>
-        public void LoadGame(string[] file)
+        /// <param name="fileName">Name of the file.</param>
+        public void LoadGame(string fileName)
         {
+            string[] file = File.ReadAllLines(fileName);
+
             this.Model.Score = int.Parse(file[0]);
             this.Model.Highest = int.Parse(file[1]);
             this.Model.DeltaTime = double.Parse(file[2]);
@@ -71,6 +73,9 @@ namespace _2048.Repository
             this.Model.GameOver = false;
             this.Model.Gamewin = false;
             this.Model.Matchtime = matchTime;
+
+            this.SpawnRandomTile();
+            this.SpawnRandomTile();
         }
 
         /// <summary>
