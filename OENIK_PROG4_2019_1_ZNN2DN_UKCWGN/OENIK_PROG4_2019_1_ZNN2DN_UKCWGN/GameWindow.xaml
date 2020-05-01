@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OENIK_PROG4_2019_1_ZNN2DN_UKCWGN"
         mc:Ignorable="d"
-        Title="2048" Icon="Blackvariant-Button-Ui-Requests-2-2048.ico" Width="430.438" Height="550">
+        Title="2048" Icon="Blackvariant-Button-Ui-Requests-2-2048.ico" Width="430.438" Height="550" Closing="Window_Closing">
     <local:GameControl/>
 </Window>
