@@ -19,7 +19,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
     /// </summary>
     public class GameRenderer
     {
-        private GameModel model;
+        public GameModel Model { get; set; }
 
         private int width = 400;
         private int height = 500;
@@ -30,7 +30,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         /// <param name="model">GameModel.</param>
         public GameRenderer(GameModel model)
         {
-            this.model = model;
+            this.Model = model;
         }
 
         /// <summary>
@@ -61,37 +61,32 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         {
             DrawingGroup dg = new DrawingGroup();
 
-            this.model.Gamesize = 4; // ezek a tesztelés miatt vannak itt, INNENTŐL-
-            this.model.Board = new Tile[this.model.Gamesize, this.model.Gamesize];
-            this.model.Score = 1204235;
-            this.model.WithdrawNum = 5;
+            /*this.Model.Gamesize = 4; // ezek a tesztelés miatt vannak itt, INNENTŐL-
+            this.Model.Board = new Tile[this.Model.Gamesize, this.Model.Gamesize];
+            this.Model.Score = 1204235;
+            this.Model.WithdrawNum = 5;
 
-            for (int i = 0; i < this.model.Board.GetLength(0); i++)
+            for (int i = 0; i < this.Model.Board.GetLength(0); i++)
             {
-                for (int j = 0; j < this.model.Board.GetLength(1); j++)
+                for (int j = 0; j < this.Model.Board.GetLength(1); j++)
                 {
-                    this.model.Board[i, j] = new Tile(4096);
+                    this.Model.Board[i, j] = new Tile(4096);
                 }
-            } // - IDÁIG
+            } // - IDÁIG*/
 
+            // background
             dg.Children.Add(this.GetBackground());
 
-            for (int i = 0; i < this.model.Board.GetLength(0); i++)
+            // tiles
+            for (int i = 0; i < this.Model.Board.GetLength(0); i++)
             {
-                for (int j = 0; j < this.model.Board.GetLength(1); j++)
+                for (int j = 0; j < this.Model.Board.GetLength(1); j++)
                 {
-                    dg.Children.Add(this.GetTile(this.model.Board[i, j], i, j));
+                    dg.Children.Add(this.GetTile(this.Model.Board[i, j], i, j));
                 }
             }
 
-            for (int i = 0; i < this.model.Board.GetLength(0); i++)
-            {
-                for (int j = 0; j < this.model.Board.GetLength(1); j++)
-                {
-                    dg.Children.Add(this.GetTile(this.model.Board[i, j], i, j));
-                }
-            }
-
+            // other formatted text's
             dg.Children.Add(this.GetScore());
             dg.Children.Add(this.GetScoreValue());
             dg.Children.Add(this.GetWithDrawal());
@@ -128,12 +123,12 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         /// <returns>The curret tile as a Drawing.</returns>
         public Drawing GetTile(Tile tile, int i, int j)
         {
-            int x = (i * (this.width / this.model.Gamesize)) + 5;
-            int y = (j * (this.width / this.model.Gamesize)) + 100;
+            int x = (i * (this.width / this.Model.Gamesize)) + 5;
+            int y = (j * (this.width / this.Model.Gamesize)) + 100;
 
-            int tileSize = this.width / this.model.Gamesize;
+            int tileSize = this.width / this.Model.Gamesize;
 
-            if (tile.Value != 0)
+            if (tile != null)
             {
                 DrawingGroup dg = new DrawingGroup();
                 dg.Children.Add(new GeometryDrawing(
@@ -165,24 +160,24 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             return new GeometryDrawing(
                 Brushes.LightGray,
                 new Pen(Brushes.Black, 2),
-                new RectangleGeometry(new Rect(x, y, tileSize, tileSize)));
+                new RectangleGeometry(new Rect(x, y, tileSize, tileSize), 15, 15));
         }
 
         /// <summary>
-        /// 
+        /// Method to drew the actual score.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Actual score as formatted text.</returns>
         public Drawing GetScoreValue()
         {
             FormattedText scoreFM = new FormattedText(
-                this.model.Score.ToString(),
+                this.Model.Score.ToString(),
                 System.Globalization.CultureInfo.CurrentCulture,
                 FlowDirection.LeftToRight,
                 new Typeface("Arial"),
                 24,
                 Brushes.Gold);
 
-            double y = (this.width / 2) - ((this.model.Score.ToString().Length * 12) / 2);
+            double y = (this.width / 2) - ((this.Model.Score.ToString().Length * 12) / 2);
 
             GeometryDrawing score = new GeometryDrawing(
                 null,
@@ -192,6 +187,10 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             return score;
         }
 
+        /// <summary>
+        /// Method to drew Score text.
+        /// </summary>
+        /// <returns>Score text as formatted text.</returns>
         public Drawing GetScore()
         {
             if (this.OldScore == null)
@@ -215,6 +214,10 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             return this.OldScore;
         }
 
+        /// <summary>
+        /// Method to drew Withdraw text.
+        /// </summary>
+        /// <returns>Withdraw text as formatted text.</returns>
         public Drawing GetWithDrawal()
         {
             if (this.OldWithDraw == null)
@@ -236,10 +239,14 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             return this.OldWithDraw;
         }
 
+        /// <summary>
+        /// Method to drew the remaining withdraws number.
+        /// </summary>
+        /// <returns>Remaining withdrawsnumber as formatted text.</returns>
         public Drawing GetWithDrawalNum()
         {
             FormattedText fm = new FormattedText(
-                this.model.WithdrawNum.ToString(),
+                this.Model.WithdrawNum.ToString(),
                 System.Globalization.CultureInfo.CurrentCulture,
                 FlowDirection.LeftToRight,
                 new Typeface("Arial"),
@@ -254,6 +261,10 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             return wd;
         }
 
+        /// <summary>
+        /// Method to drew Time text.
+        /// </summary>
+        /// <returns>Time as formatted text.</returns>
         public Drawing GetTime()
         {
             if (this.OldTime == null)
@@ -275,10 +286,14 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             return this.OldTime;
         }
 
+        /// <summary>
+        /// Method to drew the remaining time.
+        /// </summary>
+        /// <returns>Remaining time as formatted text.</returns>
         public Drawing GetTimeValue()
         {
                 FormattedText fm = new FormattedText(
-                this.model.DeltaTime.ToString(),
+                this.Model.DeltaTime.ToString() + " sec",
                 System.Globalization.CultureInfo.CurrentCulture,
                 FlowDirection.LeftToRight,
                 new Typeface("Arial"),
@@ -288,7 +303,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 GeometryDrawing time = new GeometryDrawing(
                     null,
                     new Pen(Brushes.Gold, 1),
-                    fm.BuildGeometry(new Point(this.width - 35, 30)));
+                    fm.BuildGeometry(new Point(this.width - 60, 30)));
 
                 return time;
         }

@@ -17,9 +17,20 @@ namespace _2048.Repository
     /// </summary>
     public class GameRepository : IRepository
     {
-        private readonly Random rnd = new Random();
+        private Random rnd = new Random();
 
-        private GameModel Model { get; set; }
+        /// <summary>
+        /// Gets or sets the GameModel instance.
+        /// </summary>
+        public GameModel Model { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameRepository"/> class.
+        /// </summary>
+        public GameRepository()
+        {
+            this.Model = new GameModel();
+        }
 
         /// <summary>
         /// Set Merged attribution back to false for the whole board.
@@ -30,7 +41,10 @@ namespace _2048.Repository
             {
                 for (int j = 0; j < this.Model.Gamesize; j++)
                 {
-                    this.Model.Board[i, j].Merged = false;
+                    if (this.Model.Board[i, j] != null)
+                    {
+                        this.Model.Board[i, j].Merged = false;
+                    }
                 }
             }
         }
@@ -41,6 +55,7 @@ namespace _2048.Repository
         /// <param name="fileName">Name of the file.</param>
         public void LoadGame(string fileName)
         {
+            // this.Model = new GameModel();
             string[] file = File.ReadAllLines(fileName);
 
             this.Model.Score = int.Parse(file[0]);
@@ -67,12 +82,24 @@ namespace _2048.Repository
         /// <param name="matchTime"> sets time of the game. If 0, then its an endless game.</param>
         public void NewGame(int size, int matchTime)
         {
+            // this.Model = new GameModel();
             this.Model.Gamesize = size;
             this.Model.Board = new Tile[size, size];
             this.Model.Score = 0;
             this.Model.GameOver = false;
             this.Model.Gamewin = false;
+            this.Model.WithdrawNum = 5;
             this.Model.Matchtime = matchTime;
+            this.Model.DeltaTime = matchTime;
+
+            /*for (int i = 0; i < this.Model.Board.GetLength(0); i++)
+            {
+                for (int j = 0; j < this.Model.Board.GetLength(1); j++)
+                {
+                    this.Model.Board[i, j] = new Tile(0);
+                    this.Model.Board[i, j].Merged = false;
+                }
+            }*/
 
             this.SpawnRandomTile();
             this.SpawnRandomTile();

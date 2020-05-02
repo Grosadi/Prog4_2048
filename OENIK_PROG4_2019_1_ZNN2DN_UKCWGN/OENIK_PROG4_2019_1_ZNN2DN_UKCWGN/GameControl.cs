@@ -67,7 +67,6 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 case Key.Up: this.logic.MoveUp(); break;
                 case Key.Down: this.logic.MoveDown(); break;
                 case Key.Space: this.logic.WithDrawal(); break;
-                case Key.Tab: MessageBox.Show("mifluuu"); break;
             }
 
             this.InvalidateVisual();
@@ -76,7 +75,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         private void GameControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.repo = new GameRepository();
-            this.model = new GameModel();
+            this.model = this.repo.Model;
             this.logic = new GameLogic(this.model, this.repo);
             this.renderer = new GameRenderer(this.model);
 
@@ -97,7 +96,6 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             }
             else
             {
-                MessageBox.Show("ITT LESZ A NEW GAME");
                 int size = int.Parse(win.GetType().GetProperty("Size").GetValue(win).ToString());
                 int time = int.Parse(win.GetType().GetProperty("Time").GetValue(win).ToString());
                 this.repo.NewGame(size, time);
@@ -106,9 +104,15 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             if (win != null)
             {
                 win.KeyDown += this.GameControl_KeyDown;
+                win.Closed += this.Win_Closed;
             }
 
             this.InvalidateVisual();
+        }
+
+        private void Win_Closed(object sender, EventArgs e)
+        {
+            MessageBox.Show("Mentés és név bekérés");
         }
     }
 }
