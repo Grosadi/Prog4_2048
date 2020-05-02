@@ -70,7 +70,11 @@ namespace _2048.Repository
                 string[] line = file[5 + i].Split(',');
                 for (int j = 0; j < this.Model.Board.GetLength(1); j++)
                 {
-                    this.Model.Board[i, j] = new Tile(int.Parse(line[j]));
+                    if (int.Parse(line[j]) != 0)
+                    {
+                        // fordítva a kirajzolás miatt
+                        this.Model.Board[j, i] = new Tile(int.Parse(line[j]));
+                    }
                 }
             }
         }
@@ -117,11 +121,20 @@ namespace _2048.Repository
             sw.WriteLine(this.Model.DeltaTime);
             sw.WriteLine(this.Model.WithdrawNum);
             sw.WriteLine(this.Model.Gamesize);
-            for (int i = 0; i < this.Model.Gamesize; i++)
+            for (int i = 0; i < this.Model.Board.GetLength(0); i++)
             {
-                for (int j = 0; j < this.Model.Gamesize; j++)
+                for (int j = 0; j < this.Model.Board.GetLength(1); j++)
                 {
-                    sw.Write(this.Model.Board[i, j].Value + ',');
+                    // fordítva a kirajzolás miatt
+                    if (this.Model.Board[j, i] != null)
+                    {
+                        // fordítva a kirajzolás miatt
+                        sw.Write(this.Model.Board[j, i].Value + ",");
+                    }
+                    else
+                    {
+                        sw.Write("0,");
+                    }
                 }
 
                 sw.WriteLine();
