@@ -62,14 +62,26 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         {
             switch (e.Key)
             {
-                case Key.Left: this.logic.MoveLeft(); break;
-                case Key.Right: this.logic.MoveRight(); break;
-                case Key.Up: this.logic.MoveUp(); break;
-                case Key.Down: this.logic.MoveDown(); break;
-                case Key.Space: this.logic.WithDrawal(); break;
+                    case Key.Left: this.logic.MoveLeft(); break;
+                    case Key.Right: this.logic.MoveRight(); break;
+                    case Key.Up: this.logic.MoveUp(); break;
+                    case Key.Down: this.logic.MoveDown(); break;
+                    case Key.Space: this.logic.WithDrawal(); break;
             }
 
             this.InvalidateVisual();
+
+            if (this.model.GameOver)
+            {
+                MessageBox.Show("Game Over!");
+
+                Window.GetWindow(this).Close();
+            }
+
+            if (this.model.Gamewin)
+            {
+                MessageBox.Show("You Win!\nBut you can continue playing!");
+            }
         }
 
         private void GameControl_Loaded(object sender, RoutedEventArgs e)
@@ -83,7 +95,6 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             Window win = Window.GetWindow(this);
             if (win.GetType().GetProperty("Size").GetValue(win).ToString() == n.ToString())
             {
-                MessageBox.Show("ITT LESZ A LOAD GAME");
                 try
                 {
                     this.repo.LoadGame("log.txt");
@@ -113,6 +124,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         private void Win_Closed(object sender, EventArgs e)
         {
             MessageBox.Show("Mentés és név bekérés");
+            this.repo.SaveGame("log.txt");
         }
     }
 }

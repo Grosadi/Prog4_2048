@@ -32,14 +32,21 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         {
             GameWindow gw = new GameWindow((int)this.size.Value, (int)this.time.Value);
             gw.Show();
-            this.Close();
+            this.Hide();
+            gw.Closed += this.Gw_Closed;
         }
 
         private void LoadGameButton_Click(object sender, RoutedEventArgs e)
         {
             GameWindow gw = new GameWindow();
             gw.Show();
-            this.Close();
+            this.Hide();
+            gw.Closed += this.Gw_Closed;
+        }
+
+        private void Gw_Closed(object sender, EventArgs e)
+        {
+            this.Show();
         }
 
         private void HighScoreButton_Click(object sender, RoutedEventArgs e)
