@@ -142,7 +142,7 @@ namespace _2048.Logic
         /// <returns>with a move downwards.</returns>
         public bool MoveDown()
         {
-            return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 1, 0, this.GameModel.Gamesize);
+            return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 0, 1, this.GameModel.Gamesize);//le
         }
 
         /// <summary>
@@ -151,7 +151,8 @@ namespace _2048.Logic
         /// <returns>with a move left.</returns>
         public bool MoveLeft()
         {
-            return this.Move(0, 0, -1, this.GameModel.Gamesize);
+
+            return this.Move(0, -1, 0, this.GameModel.Gamesize);//balra
         }
 
         /// <summary>
@@ -160,7 +161,8 @@ namespace _2048.Logic
         /// <returns>with a move right.</returns>
         public bool MoveRight()
         {
-            return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 0, 1, this.GameModel.Gamesize);
+            
+            return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 1, 0, this.GameModel.Gamesize);//jobbra
         }
 
         /// <summary>
@@ -181,7 +183,8 @@ namespace _2048.Logic
         /// <returns>with a move to upwards.</returns>
         public bool MoveUp()
         {
-            return this.Move(0, -1, 0, this.GameModel.Gamesize);
+            
+            return this.Move(0, 0, -1, this.GameModel.Gamesize);//fel
         }
 
         /// <summary>
