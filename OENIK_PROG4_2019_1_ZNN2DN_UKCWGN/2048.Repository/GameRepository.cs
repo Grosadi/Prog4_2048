@@ -20,17 +20,17 @@ namespace _2048.Repository
         private Random rnd = new Random();
 
         /// <summary>
-        /// Gets or sets the GameModel instance.
-        /// </summary>
-        public GameModel Model { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="GameRepository"/> class.
         /// </summary>
         public GameRepository()
         {
             this.Model = new GameModel();
         }
+
+        /// <summary>
+        /// Gets or sets the GameModel instance.
+        /// </summary>
+        public GameModel Model { get; set; }
 
         /// <summary>
         /// Set Merged attribution back to false for the whole board.

@@ -25,12 +25,27 @@ namespace _2048.Logic
         {
             this.GameModel = gameModel;
             this.Repository = repository;
-            this.Lista0 = new GameModel();
-            this.Lista1 = new GameModel();
+            this.Listforwithrow = new GameModel[5];
+            for (int i = 0; i < this.Listforwithrow.Length; i++)
+            {
+                this.Listforwithrow[i] = new GameModel();
+                this.Listforwithrow[i].Board = new Tile[this.GameModel.Gamesize, this.GameModel.Gamesize];
+                for (int j = 0; j < this.Listforwithrow[i].Board.GetLength(0); j++)
+                {
+                    for (int k = 0; k < this.Listforwithrow[i].Board.GetLength(1); k++)
+                    {
+                        this.Listforwithrow[i].Board[j, k] = new Tile(0);
+                        this.Listforwithrow[i].Board[j, k].Merged = false;
+                    }
+                }
+            }
         }
 
-        public GameModel Lista0 { get; set; }
-        public GameModel Lista1 { get; set; }
+        /// <summary>
+        /// Gets or sets list for store gamemodels for withraw.
+        /// </summary>
+        public GameModel[] Listforwithrow { get; set; }
+
         /// <summary>
         /// Gets or sets actual gamemodel.
         /// </summary>
@@ -136,7 +151,8 @@ namespace _2048.Logic
                     {
                         this.GameModel.Gamewin = true;
                     }
-                if (this.GameModel.Score != 0)
+
+                    if (this.GameModel.Score != 0)
                 {
                     this.SaveGameState();
                 }
@@ -151,7 +167,7 @@ namespace _2048.Logic
         /// <returns>with a move downwards.</returns>
         public bool MoveDown()
         {
-            return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 0, 1, this.GameModel.Gamesize);//le
+            return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 0, 1, this.GameModel.Gamesize);
         }
 
         /// <summary>
@@ -160,7 +176,7 @@ namespace _2048.Logic
         /// <returns>with a move left.</returns>
         public bool MoveLeft()
         {
-            return this.Move(0, -1, 0, this.GameModel.Gamesize);//balra
+            return this.Move(0, -1, 0, this.GameModel.Gamesize);
         }
 
         /// <summary>
@@ -169,7 +185,7 @@ namespace _2048.Logic
         /// <returns>with a move right.</returns>
         public bool MoveRight()
         {
-            return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 1, 0, this.GameModel.Gamesize);//jobbra
+            return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 1, 0, this.GameModel.Gamesize);
         }
 
         /// <summary>
@@ -190,26 +206,31 @@ namespace _2048.Logic
         /// <returns>with a move to upwards.</returns>
         public bool MoveUp()
         {
-            return this.Move(0, 0, -1, this.GameModel.Gamesize);//fel
+            return this.Move(0, 0, -1, this.GameModel.Gamesize);
         }
 
         /// <summary>
         /// Calls the withdrawal method from repository.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>with withraw move.</returns>
         public bool WithDrawal()
         {
-            if (this.GameModel.WithdrawNum > 0 && this.Lista0!=Lista1)
+            if (this.GameModel.WithdrawNum > 0)
             {
-                this.GameModel.Score = this.Lista1.Score;
-                //for (int i = 0; i < this.GameModel.Board.GetLength(0); i++)
-                //{
-                //    for (int j = 0; j < this.GameModel.Board.GetLength(1); j++)
-                //    {
-                //         this.GameModel.Board[i, j] = this.Lista[1].Board[i, j];
-                //    }
-                //}
-               this.GameModel.WithdrawNum--;
+                if (this.GameModel.Score != this.Listforwithrow[1].Score)
+                {
+                    this.GameModel.Score = this.Listforwithrow[2].Score;
+                    for (int j = 0; j < this.Listforwithrow[2].Board.GetLength(0); j++)
+                    {
+                        for (int k = 0; k < this.Listforwithrow[2].Board.GetLength(1); k++)
+                        {
+                            this.GameModel.Board[j, k] = this.Listforwithrow[1].Board[j, k];
+                        }
+                    }
+
+                    this.GameModel.WithdrawNum--;
+                }
+
                 return true;
             }
             else
@@ -218,11 +239,25 @@ namespace _2048.Logic
             }
         }
 
+        /// <summary>
+        /// save a state of the curent stand.
+        /// </summary>
         public void SaveGameState()
         {
-            this.Lista1.Score = this.Lista0.Score;
-            this.Lista0.Score = this.GameModel.Score;
+            for (int i = this.Listforwithrow.Length - 1; i > 0; i--)
+            {
+                this.Listforwithrow[i].Score = this.Listforwithrow[i - 1].Score;
+                for (int j = 0; j < this.Listforwithrow[i].Board.GetLength(0); j++)
+                {
+                    for (int k = 0; k < this.Listforwithrow[i].Board.GetLength(1); k++)
+                    {
+                        this.Listforwithrow[i].Board[j, k] = this.GameModel.Board[j, k];
+                        this.Listforwithrow[i].Board[j, k].Merged = false;
+                    }
+                }
+            }
 
+            this.Listforwithrow[0].Score = this.GameModel.Score;
         }
     }
 }

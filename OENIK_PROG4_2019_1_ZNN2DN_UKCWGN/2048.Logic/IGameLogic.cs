@@ -70,7 +70,7 @@ namespace _2048.Logic
        /// <summary>
        /// Saves the state of the game to a list, neede for withdraw.
        /// </summary>
-       /// <param name="gameModelist">list strores models</param>
+       /// <param name="gameModelist">list strores models.</param>
         void SaveGameState();
     }
 }
