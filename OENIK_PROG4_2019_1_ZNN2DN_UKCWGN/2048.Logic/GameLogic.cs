@@ -25,26 +25,14 @@ namespace _2048.Logic
         {
             this.GameModel = gameModel;
             this.Repository = repository;
-            this.Listforwithrow = new GameModel[5];
-            for (int i = 0; i < this.Listforwithrow.Length; i++)
-            {
-                this.Listforwithrow[i] = new GameModel();
-                this.Listforwithrow[i].Board = new Tile[this.GameModel.Gamesize, this.GameModel.Gamesize];
-                for (int j = 0; j < this.Listforwithrow[i].Board.GetLength(0); j++)
-                {
-                    for (int k = 0; k < this.Listforwithrow[i].Board.GetLength(1); k++)
-                    {
-                        this.Listforwithrow[i].Board[j, k] = new Tile(0);
-                        this.Listforwithrow[i].Board[j, k].Merged = false;
-                    }
-                }
-            }
         }
 
         /// <summary>
         /// Gets or sets list for store gamemodels for withraw.
         /// </summary>
-        public GameModel[] Listforwithrow { get; set; }
+        public int [,] modelvaluesforwithrow = new int[4, 4];
+        public int[,] modelvaluesforwithrow2 = new int[4, 4];
+        public int[] Scores = new int[2];
 
         /// <summary>
         /// Gets or sets actual gamemodel.
@@ -65,101 +53,99 @@ namespace _2048.Logic
         /// <param name="side">The number of tile per side.</param>
         /// <returns>with a raction for a move.</returns>
         public bool Move(int countdownFrom, int yIncr, int xIncr, int side)
+        {
+            bool moved = false;
+            for (int i = 0; i < side * side; i++)
             {
-                 bool moved = false;
-                 for (int i = 0; i < side * side; i++)
+                int j = Math.Abs(countdownFrom - i);
+
+                // we use this two variable for moving between tiles.
+                int r = j / side;
+                int c = j % side;
+
+                // if the tile is empty we should continue.
+                if (this.GameModel.Board[r, c] == null)
                 {
-                    int j = Math.Abs(countdownFrom - i);
-
-                    // we use this two variable for moving between tiles.
-                    int r = j / side;
-                    int c = j % side;
-
-                    // if the tile is empty we should continue.
-                    if (this.GameModel.Board[r, c] == null)
-                    {
-                        continue; // passes control to the next iteration of the enclosing while, do, for, or foreach statement in which it appears.
+                    continue; // passes control to the next iteration of the enclosing while, do, for, or foreach statement in which it appears.
                 }
 
-                    // we make a move to the specified deriction
-                    int nextR = r + yIncr;
-                    int nextC = c + xIncr;
+                // we make a move to the specified deriction
+                int nextR = r + yIncr;
+                int nextC = c + xIncr;
 
-                    // while the tiles can move or cominate with each other.
-                    while (nextR >= 0 && nextR < side && nextC >= 0 && nextC < side)
-                    {
-                        Tile next = this.GameModel.Board[nextR, nextC];
-                        Tile curr = this.GameModel.Board[r, c];
-
-                        // if newyt tile is null, we dontd do any combination , just move there
-                        if (next == null)
-                        {
-                            if (this.GameModel.CheckAvailableMoves)
-                            {
-                                return true;
-                            }
-
-                            this.GameModel.Board[nextR, nextC] = curr;
-                            this.GameModel.Board[r, c] = null;
-                            r = nextR;
-                            c = nextC;
-                            nextR += yIncr;
-                            nextC += xIncr;
-                            moved = true;
-                        }
-
-                        // if merge is possible with the next tile we should combinate them and move then
-                        else if (next.CanMergeWith(curr))
-                        {
-                            if (this.GameModel.CheckAvailableMoves)
-                            {
-                                return true;
-                            }
-
-                            // if the given tile has a bigger value than highest value we should overwrite the highest value.
-                            int value = next.MergeWith(curr);
-                            if (value > this.GameModel.Highest)
-                            {
-                                this.GameModel.Highest = value;
-                            }
-
-                            // after a move we incrase the score.
-                            this.GameModel.Score += value;
-                            this.GameModel.Board[r, c] = null;
-                            moved = true;
-                            break;
-                        }
-
-                        // else exit from the sequence.
-                        else
-                        {
-                            break;
-                        }
-                    }
-                }
-
-                // if move was possible
-                 if (moved)
+                // while the tiles can move or cominate with each other.
+                while (nextR >= 0 && nextR < side && nextC >= 0 && nextC < side)
                 {
-                    this.Repository.ClearMerged();
-                    this.Repository.SpawnRandomTile();
-                    if (!this.MovesAvailable())
+                    Tile next = this.GameModel.Board[nextR, nextC];
+                    Tile curr = this.GameModel.Board[r, c];
+
+                    // if newyt tile is null, we dontd do any combination , just move there
+                    if (next == null)
                     {
-                        this.GameModel.GameOver = true;
-                    }
-                    else if (this.GameModel.Highest == 2048)
-                    {
-                        this.GameModel.Gamewin = true;
+                        if (this.GameModel.CheckAvailableMoves)
+                        {
+                            return true;
+                        }
+
+                        this.GameModel.Board[nextR, nextC] = curr;
+                        this.GameModel.Board[r, c] = null;
+                        r = nextR;
+                        c = nextC;
+                        nextR += yIncr;
+                        nextC += xIncr;
+                        moved = true;
                     }
 
-                    if (this.GameModel.Score != 0)
-                {
-                    this.SaveGameState();
+                    // if merge is possible with the next tile we should combinate them and move then
+                    else if (next.CanMergeWith(curr))
+                    {
+                        if (this.GameModel.CheckAvailableMoves)
+                        {
+                            return true;
+                        }
+
+                        // if the given tile has a bigger value than highest value we should overwrite the highest value.
+                        int value = next.MergeWith(curr);
+                        if (value > this.GameModel.Highest)
+                        {
+                            this.GameModel.Highest = value;
+                        }
+
+                        // after a move we incrase the score.
+                        this.GameModel.Score += value;
+                        this.GameModel.Board[r, c] = null;
+                        moved = true;
+                        break;
+                    }
+
+                    // else exit from the sequence.
+                    else
+                    {
+                        break;
+                    }
                 }
             }
 
-                 return moved;
+            // if move was possible
+            if (moved)
+            {
+                this.Repository.ClearMerged();
+                this.Repository.SpawnRandomTile();
+                if (!this.MovesAvailable())
+                {
+                    this.GameModel.GameOver = true;
+                }
+                else if (this.GameModel.Highest == 2048)
+                {
+                    this.GameModel.Gamewin = true;
+                }
+
+                this.SaveGameState();
+                ;
             }
+
+            return moved;
+        }
 
         /// <summary>
         /// Down.
@@ -216,23 +202,27 @@ namespace _2048.Logic
         public bool WithDrawal()
         {
             if (this.GameModel.WithdrawNum > 0)
-            {
-                if (this.GameModel.Score != this.Listforwithrow[1].Score)
-                {
-                    this.GameModel.Score = this.Listforwithrow[2].Score;
-                    for (int j = 0; j < this.Listforwithrow[2].Board.GetLength(0); j++)
-                    {
-                        for (int k = 0; k < this.Listforwithrow[2].Board.GetLength(1); k++)
-                        {
-                            this.GameModel.Board[j, k] = this.Listforwithrow[1].Board[j, k];
-                        }
-                    }
+            //{
 
-                    this.GameModel.WithdrawNum--;
-                }
+            //    for (int i = 0; i < this.modelvaluesforwithrow.GetLength(0); i++)
+            //    {
+            //        for (int j = 0; j < this.modelvaluesforwithrow.GetLength(1); j++)
+            //        {
+            //            if (this.modelvaluesforwithrow2[i, j] != 0)
+            //            {
+            //                this.GameModel.Board[i, j].Value = this.modelvaluesforwithrow2[i, j];
+            //            }
+            //            else
+            //            {
+            //                this.GameModel.Board[i, j].Value = 0;
+            //            }
+            //        }
+            //    }
+
+            //    this.GameModel.WithdrawNum--;
 
                 return true;
-            }
+            
             else
             {
                 return false;
@@ -244,20 +234,25 @@ namespace _2048.Logic
         /// </summary>
         public void SaveGameState()
         {
-            for (int i = this.Listforwithrow.Length - 1; i > 0; i--)
+            for (int i = 0; i < this.modelvaluesforwithrow.GetLength(0); i++)
             {
-                this.Listforwithrow[i].Score = this.Listforwithrow[i - 1].Score;
-                for (int j = 0; j < this.Listforwithrow[i].Board.GetLength(0); j++)
+                for (int j = 0; j < this.modelvaluesforwithrow.GetLength(1); j++)
                 {
-                    for (int k = 0; k < this.Listforwithrow[i].Board.GetLength(1); k++)
-                    {
-                        this.Listforwithrow[i].Board[j, k] = this.GameModel.Board[j, k];
-                        this.Listforwithrow[i].Board[j, k].Merged = false;
-                    }
+
+                        this.modelvaluesforwithrow2[i, j] = this.modelvaluesforwithrow[i, j];
                 }
             }
 
-            this.Listforwithrow[0].Score = this.GameModel.Score;
+            for (int i = 0; i < this.modelvaluesforwithrow.GetLength(0); i++)
+            {
+                for (int j = 0; j < this.modelvaluesforwithrow.GetLength(1); j++)
+                {
+                    if (this.GameModel.Board[i, j] != null)
+                    {
+                        this.modelvaluesforwithrow[i, j] = this.GameModel.Board[i, j].Value;
+                    }
+                }
+            }
         }
     }
 }
