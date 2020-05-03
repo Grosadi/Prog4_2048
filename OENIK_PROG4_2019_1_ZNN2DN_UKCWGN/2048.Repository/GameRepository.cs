@@ -95,7 +95,6 @@ namespace _2048.Repository
             this.Model.WithdrawNum = 5;
             this.Model.Matchtime = matchTime;
             this.Model.DeltaTime = matchTime;
-
             /*for (int i = 0; i < this.Model.Board.GetLength(0); i++)
             {
                 for (int j = 0; j < this.Model.Board.GetLength(1); j++)

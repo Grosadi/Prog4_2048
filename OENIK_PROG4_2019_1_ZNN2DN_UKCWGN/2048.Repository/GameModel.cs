@@ -4,12 +4,6 @@
 
 namespace _2048.Repository
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using _2048.Repository.Seged;
 
     /// <summary>

@@ -58,12 +58,19 @@ namespace _2048.Logic
         /// <summary>
         /// sets the previous stage of the game, possible 5 times during game.
         /// </summary>
-        void WithDrawal();
+        /// <returns>witha widthraw.</returns>
+        bool WithDrawal();
 
         /// <summary>
         /// MovesAviable.
         /// </summary>
         /// <returns>If therer is any  more moves available.</returns>
         bool MovesAvailable();
+
+       /// <summary>
+       /// Saves the state of the game to a list, neede for withdraw.
+       /// </summary>
+       /// <param name="gameModelist">list strores models</param>
+        void SaveGameState();
     }
 }

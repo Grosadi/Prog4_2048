@@ -5,6 +5,8 @@
 namespace _2048.Logic
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using _2048.Repository;
     using _2048.Repository.Seged;
 
@@ -23,8 +25,12 @@ namespace _2048.Logic
         {
             this.GameModel = gameModel;
             this.Repository = repository;
+            this.Lista0 = new GameModel();
+            this.Lista1 = new GameModel();
         }
 
+        public GameModel Lista0 { get; set; }
+        public GameModel Lista1 { get; set; }
         /// <summary>
         /// Gets or sets actual gamemodel.
         /// </summary>
@@ -45,8 +51,8 @@ namespace _2048.Logic
         /// <returns>with a raction for a move.</returns>
         public bool Move(int countdownFrom, int yIncr, int xIncr, int side)
             {
-                bool moved = false;
-                for (int i = 0; i < side * side; i++)
+                 bool moved = false;
+                 for (int i = 0; i < side * side; i++)
                 {
                     int j = Math.Abs(countdownFrom - i);
 
@@ -118,11 +124,10 @@ namespace _2048.Logic
                 }
 
                 // if move was possible
-                if (moved)
+                 if (moved)
                 {
                     this.Repository.ClearMerged();
                     this.Repository.SpawnRandomTile();
-
                     if (!this.MovesAvailable())
                     {
                         this.GameModel.GameOver = true;
@@ -131,9 +136,13 @@ namespace _2048.Logic
                     {
                         this.GameModel.Gamewin = true;
                     }
+                if (this.GameModel.Score != 0)
+                {
+                    this.SaveGameState();
                 }
+            }
 
-                return moved;
+                 return moved;
             }
 
         /// <summary>
@@ -151,7 +160,6 @@ namespace _2048.Logic
         /// <returns>with a move left.</returns>
         public bool MoveLeft()
         {
-
             return this.Move(0, -1, 0, this.GameModel.Gamesize);//balra
         }
 
@@ -161,7 +169,6 @@ namespace _2048.Logic
         /// <returns>with a move right.</returns>
         public bool MoveRight()
         {
-            
             return this.Move((this.GameModel.Gamesize * this.GameModel.Gamesize) - 1, 1, 0, this.GameModel.Gamesize);//jobbra
         }
 
@@ -183,16 +190,39 @@ namespace _2048.Logic
         /// <returns>with a move to upwards.</returns>
         public bool MoveUp()
         {
-            
             return this.Move(0, 0, -1, this.GameModel.Gamesize);//fel
         }
 
         /// <summary>
         /// Calls the withdrawal method from repository.
         /// </summary>
-        public void WithDrawal()
+        /// <returns></returns>
+        public bool WithDrawal()
         {
-            new NotImplementedException();
+            if (this.GameModel.WithdrawNum > 0 && this.Lista0!=Lista1)
+            {
+                this.GameModel.Score = this.Lista1.Score;
+                //for (int i = 0; i < this.GameModel.Board.GetLength(0); i++)
+                //{
+                //    for (int j = 0; j < this.GameModel.Board.GetLength(1); j++)
+                //    {
+                //         this.GameModel.Board[i, j] = this.Lista[1].Board[i, j];
+                //    }
+                //}
+               this.GameModel.WithdrawNum--;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void SaveGameState()
+        {
+            this.Lista1.Score = this.Lista0.Score;
+            this.Lista0.Score = this.GameModel.Score;
+
         }
     }
 }
