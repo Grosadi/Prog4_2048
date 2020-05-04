@@ -239,14 +239,12 @@ namespace _2048.Logic
                 return false;
             }
         }
-       
 
         /// <summary>
         /// save a state of the curent stand.
         /// </summary>
         public void SaveGameState()
         {
-            //int[,] temp = new int[4, 4];
             Withrovdatas vithrowtemp = new Withrovdatas(this.GameModel.Gamesize);
             for (int i = 0; i < this.GameModel.Gamesize; i++)
             {
@@ -254,7 +252,8 @@ namespace _2048.Logic
                 {
                     if (this.GameModel.Board[i, j] != null)
                     {
-                        vithrowtemp.values[i, j] = new Tile(this.GameModel.Board[i, j].Value);
+                        int ertek = this.GameModel.Board[i, j].Value;
+                        vithrowtemp.values[i, j] = new Tile(ertek);
                     }
                 }
             }
