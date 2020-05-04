@@ -26,7 +26,17 @@ namespace _2048.Logic
             this.GameModel = gameModel;
             this.Repository = repository;
             this.Withrovdata = new Stack<Withrovdatas>();
+            temp = new int[4, 4];
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    temp[i, j] = 0;
+                }
+            }
         }
+
+        public int [,] temp { get; set; }
 
         /// <summary>
         /// Gets or sets list for store gamemodels for withraw.
@@ -210,7 +220,11 @@ namespace _2048.Logic
                     {
                         if (vithrowtemp.values[i, j] != null)
                         {
-                          this.GameModel.Board[i, j] = new Tile(vithrowtemp.values[i, j].Value);
+                          this.GameModel.Board[i, j] = new Tile(vithrowtemp.values[i,j].Value);
+                        } 
+                        else
+                        {
+                            this.GameModel.Board[i, j] = null;
                         }
                     }
                 }
@@ -225,12 +239,14 @@ namespace _2048.Logic
                 return false;
             }
         }
+       
 
         /// <summary>
         /// save a state of the curent stand.
         /// </summary>
         public void SaveGameState()
         {
+            //int[,] temp = new int[4, 4];
             Withrovdatas vithrowtemp = new Withrovdatas(this.GameModel.Gamesize);
             for (int i = 0; i < this.GameModel.Gamesize; i++)
             {
@@ -244,7 +260,7 @@ namespace _2048.Logic
             }
 
             vithrowtemp.Score = this.GameModel.Score;
-            Withrovdata.Push(vithrowtemp);
+            this.Withrovdata.Push(vithrowtemp);
         }
     }
 }
