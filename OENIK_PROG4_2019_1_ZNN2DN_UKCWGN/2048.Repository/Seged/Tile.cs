@@ -10,7 +10,6 @@ namespace _2048.Repository.Seged
     /// </summary>
     public class Tile
     {
-        // Bindabel leszármazott!vagyis majd ha lesz osztály hozza
         private int value;
         private bool merged;
 
@@ -37,8 +36,6 @@ namespace _2048.Repository.Seged
             set
             {
                 this.value = value;
-
-                // this.OPC();       majd ki kommenteljuk ha lesz Bindable class
             }
         }
 

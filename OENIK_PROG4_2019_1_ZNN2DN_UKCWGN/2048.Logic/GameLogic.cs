@@ -25,14 +25,13 @@ namespace _2048.Logic
         {
             this.GameModel = gameModel;
             this.Repository = repository;
+            this.Withrovdata = new Stack<Withrovdatas>();
         }
 
         /// <summary>
         /// Gets or sets list for store gamemodels for withraw.
         /// </summary>
-        public int [,] modelvaluesforwithrow = new int[4, 4];
-        public int[,] modelvaluesforwithrow2 = new int[4, 4];
-        public int[] Scores = new int[2];
+        public Stack<Withrovdatas> Withrovdata;
 
         /// <summary>
         /// Gets or sets actual gamemodel.
@@ -54,6 +53,7 @@ namespace _2048.Logic
         /// <returns>with a raction for a move.</returns>
         public bool Move(int countdownFrom, int yIncr, int xIncr, int side)
         {
+          
             bool moved = false;
             for (int i = 0; i < side * side; i++)
             {
@@ -141,7 +141,6 @@ namespace _2048.Logic
                 }
 
                 this.SaveGameState();
-                ;
             }
 
             return moved;
@@ -202,27 +201,25 @@ namespace _2048.Logic
         public bool WithDrawal()
         {
             if (this.GameModel.WithdrawNum > 0)
-            //{
+            {
+                this.Withrovdata.Pop();
+                Withrovdatas vithrowtemp = this.Withrovdata.Pop();
+                for (int i = 0; i < this.GameModel.Gamesize; i++)
+                {
+                    for (int j = 0; i < this.GameModel.Gamesize; i++)
+                    {
+                        if (vithrowtemp.values[i, j] != null)
+                        {
+                          this.GameModel.Board[i, j] = new Tile(vithrowtemp.values[i, j].Value);
+                        }
+                    }
+                }
 
-            //    for (int i = 0; i < this.modelvaluesforwithrow.GetLength(0); i++)
-            //    {
-            //        for (int j = 0; j < this.modelvaluesforwithrow.GetLength(1); j++)
-            //        {
-            //            if (this.modelvaluesforwithrow2[i, j] != 0)
-            //            {
-            //                this.GameModel.Board[i, j].Value = this.modelvaluesforwithrow2[i, j];
-            //            }
-            //            else
-            //            {
-            //                this.GameModel.Board[i, j].Value = 0;
-            //            }
-            //        }
-            //    }
-
-            //    this.GameModel.WithdrawNum--;
-
+                this.GameModel.Score = vithrowtemp.Score;
+                this.GameModel.WithdrawNum--;
                 return true;
-            
+            }
+
             else
             {
                 return false;
@@ -234,25 +231,20 @@ namespace _2048.Logic
         /// </summary>
         public void SaveGameState()
         {
-            for (int i = 0; i < this.modelvaluesforwithrow.GetLength(0); i++)
+            Withrovdatas vithrowtemp = new Withrovdatas(this.GameModel.Gamesize);
+            for (int i = 0; i < this.GameModel.Gamesize; i++)
             {
-                for (int j = 0; j < this.modelvaluesforwithrow.GetLength(1); j++)
-                {
-
-                        this.modelvaluesforwithrow2[i, j] = this.modelvaluesforwithrow[i, j];
-                }
-            }
-
-            for (int i = 0; i < this.modelvaluesforwithrow.GetLength(0); i++)
-            {
-                for (int j = 0; j < this.modelvaluesforwithrow.GetLength(1); j++)
+                for (int j = 0; i < this.GameModel.Gamesize; i++)
                 {
                     if (this.GameModel.Board[i, j] != null)
                     {
-                        this.modelvaluesforwithrow[i, j] = this.GameModel.Board[i, j].Value;
+                        vithrowtemp.values[i, j] = new Tile(this.GameModel.Board[i, j].Value);
                     }
                 }
             }
+
+            vithrowtemp.Score = this.GameModel.Score;
+            Withrovdata.Push(vithrowtemp);
         }
     }
 }

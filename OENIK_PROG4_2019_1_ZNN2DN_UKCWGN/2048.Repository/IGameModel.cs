@@ -5,6 +5,7 @@
 namespace _2048.Repository
 {
     using _2048.Repository.Seged;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Define the class Gamemodel.
@@ -60,5 +61,7 @@ namespace _2048.Repository
         /// Gets or sets the number of Withdraws.
         /// </summary>
         int WithdrawNum { get; set; }
+
+        Stack<Withrovdatas> Withrovdatas { get; set; }
     }
 }

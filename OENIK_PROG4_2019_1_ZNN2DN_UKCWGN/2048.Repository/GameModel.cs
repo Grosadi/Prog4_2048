@@ -5,6 +5,7 @@
 namespace _2048.Repository
 {
     using _2048.Repository.Seged;
+    using System.Collections.Generic;
 
     /// <summary>
     /// GameModel.
@@ -41,6 +42,8 @@ namespace _2048.Repository
         /// Gets or sets the size of the board. Board[Gamesize, Gamesize].
         /// </summary>
         public Tile[,] Board { get; set; }
+
+        public Stack<Withrovdatas> Withrovdatas {get;set;}
 
         /// <summary>
         /// Gets or sets the actual score.
