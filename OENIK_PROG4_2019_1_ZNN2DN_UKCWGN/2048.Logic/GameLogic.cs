@@ -53,7 +53,6 @@ namespace _2048.Logic
         /// <returns>with a raction for a move.</returns>
         public bool Move(int countdownFrom, int yIncr, int xIncr, int side)
         {
-            this.SaveGameState();
             bool moved = false;
             for (int i = 0; i < side * side; i++)
             {
@@ -139,6 +138,7 @@ namespace _2048.Logic
                 {
                     this.GameModel.Gamewin = true;
                 }
+                this.SaveGameState();
             }
 
             return moved;
