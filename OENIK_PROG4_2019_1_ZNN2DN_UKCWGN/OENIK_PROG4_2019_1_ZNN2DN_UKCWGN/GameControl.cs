@@ -62,20 +62,37 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         {
             switch (e.Key)
             {
-                    case Key.Left: this.logic.MoveLeft(); break;
-                    case Key.Right: this.logic.MoveRight(); break;
-                    case Key.Up: this.logic.MoveUp(); break;
-                    case Key.Down: this.logic.MoveDown(); break;
-                    case Key.Space: this.logic.WithDrawal(); break;
+                case Key.Left: this.logic.MoveLeft(); break;
+                case Key.Right: this.logic.MoveRight(); break;
+                case Key.Up: this.logic.MoveUp(); break;
+                case Key.Down: this.logic.MoveDown(); break;
+                case Key.Space:
+                    {
+                        bool succes = this.logic.WithDrawal();
+                        if (succes)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Out of Withdraws!");
+                            break;
+                        }
+                    }
             }
 
             this.InvalidateVisual();
 
-            if (this.model.GameOver)
+            if (this.model.GameOver && this.model.WithdrawNum == 0)
             {
                 MessageBox.Show("Game Over!");
 
                 Window.GetWindow(this).Close();
+            }
+            else if (this.model.GameOver)
+            {
+                MessageBox.Show("Game Over, but\nYou left " + this.model.WithdrawNum.ToString() + " withdraws!");
+                this.model.GameOver = false;
             }
 
             if (this.model.Gamewin)
