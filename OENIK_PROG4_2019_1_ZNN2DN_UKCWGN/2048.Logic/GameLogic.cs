@@ -26,22 +26,7 @@ namespace _2048.Logic
             this.GameModel = gameModel;
             this.Repository = repository;
             this.Withrovdata = new Stack<Withrovdatas>();
-            temp = new int[4, 4];
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    temp[i, j] = 0;
-                }
-            }
         }
-
-        public int [,] temp { get; set; }
-
-        /// <summary>
-        /// Gets or sets list for store gamemodels for withraw.
-        /// </summary>
-        public Stack<Withrovdatas> Withrovdata;
 
         /// <summary>
         /// Gets or sets actual gamemodel.
@@ -54,6 +39,11 @@ namespace _2048.Logic
         public IRepository Repository { get; set; }
 
         /// <summary>
+        /// Gets or sets list for store gamemodels for withraw.
+        /// </summary>
+        private Stack<Withrovdatas> Withrovdata { get; set; }
+
+        /// <summary>
         /// The main method of the game, responsible for moving the tiles and spawning them in the right way.
         /// </summary>
         /// <param name="countdownFrom">param used for calculation.</param>
@@ -63,7 +53,6 @@ namespace _2048.Logic
         /// <returns>with a raction for a move.</returns>
         public bool Move(int countdownFrom, int yIncr, int xIncr, int side)
         {
-          
             bool moved = false;
             for (int i = 0; i < side * side; i++)
             {
@@ -149,7 +138,6 @@ namespace _2048.Logic
                 {
                     this.GameModel.Gamewin = true;
                 }
-
                 this.SaveGameState();
             }
 
@@ -210,30 +198,29 @@ namespace _2048.Logic
         /// <returns>with withraw move.</returns>
         public bool WithDrawal()
         {
-            if (this.GameModel.WithdrawNum > 0)
+            if (this.GameModel.WithdrawNum > 0 && this.Withrovdata.Count > 1)
             {
                 this.Withrovdata.Pop();
                 Withrovdatas vithrowtemp = this.Withrovdata.Pop();
-                for (int i = 0; i < this.GameModel.Gamesize; i++)
+                this.GameModel.Score = vithrowtemp.Score;
+                this.GameModel.Highest = vithrowtemp.Highest;
+                this.GameModel.Board = new Tile[this.GameModel.Gamesize, this.GameModel.Gamesize];
+
+                for (int i = 0; i < this.GameModel.Board.GetLength(0); i++)
                 {
-                    for (int j = 0; i < this.GameModel.Gamesize; i++)
+                    for (int j = 0; j < this.GameModel.Board.GetLength(1); j++)
                     {
-                        if (vithrowtemp.values[i, j] != null)
+                        if (vithrowtemp.Values[i, j] != 0)
                         {
-                          this.GameModel.Board[i, j] = new Tile(vithrowtemp.values[i,j].Value);
-                        } 
-                        else
-                        {
-                            this.GameModel.Board[i, j] = null;
+                            // fordítva a kirajzolás miatt
+                            this.GameModel.Board[j, i] = new Tile(vithrowtemp.Values[i, j]);
                         }
                     }
                 }
 
-                this.GameModel.Score = vithrowtemp.Score;
                 this.GameModel.WithdrawNum--;
                 return true;
             }
-
             else
             {
                 return false;
@@ -246,19 +233,25 @@ namespace _2048.Logic
         public void SaveGameState()
         {
             Withrovdatas vithrowtemp = new Withrovdatas(this.GameModel.Gamesize);
-            for (int i = 0; i < this.GameModel.Gamesize; i++)
+            vithrowtemp.Score = this.GameModel.Score;
+            vithrowtemp.Highest = this.GameModel.Highest;
+            for (int i = 0; i < this.GameModel.Board.GetLength(0); i++)
             {
-                for (int j = 0; i < this.GameModel.Gamesize; i++)
+                for (int j = 0; j < this.GameModel.Board.GetLength(1); j++)
                 {
-                    if (this.GameModel.Board[i, j] != null)
+                    // fordítva a kirajzolás miatt
+                    if (this.GameModel.Board[j, i] != null)
                     {
-                        int ertek = this.GameModel.Board[i, j].Value;
-                        vithrowtemp.values[i, j] = new Tile(ertek);
+                        // fordítva a kirajzolás miatt
+                        vithrowtemp.Values[i, j] = this.GameModel.Board[j, i].Value;
+                    }
+                    else
+                    {
+                        vithrowtemp.Values[i, j] = 0;
                     }
                 }
             }
 
-            vithrowtemp.Score = this.GameModel.Score;
             this.Withrovdata.Push(vithrowtemp);
         }
     }

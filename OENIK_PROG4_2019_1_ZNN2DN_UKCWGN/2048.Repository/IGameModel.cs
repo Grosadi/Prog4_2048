@@ -4,8 +4,8 @@
 
 namespace _2048.Repository
 {
-    using _2048.Repository.Seged;
     using System.Collections.Generic;
+    using _2048.Repository.Seged;
 
     /// <summary>
     /// Define the class Gamemodel.
@@ -62,6 +62,9 @@ namespace _2048.Repository
         /// </summary>
         int WithdrawNum { get; set; }
 
+        /// <summary>
+        /// Gets or sets stack for store states of the game.
+        /// </summary>
         Stack<Withrovdatas> Withrovdatas { get; set; }
     }
 }

@@ -4,8 +4,8 @@
 
 namespace _2048.Repository
 {
-    using _2048.Repository.Seged;
     using System.Collections.Generic;
+    using _2048.Repository.Seged;
 
     /// <summary>
     /// GameModel.
@@ -43,7 +43,10 @@ namespace _2048.Repository
         /// </summary>
         public Tile[,] Board { get; set; }
 
-        public Stack<Withrovdatas> Withrovdatas {get;set;}
+        /// <summary>
+        /// Gets or sets stack for store states of the game.
+        /// </summary>
+        public Stack<Withrovdatas> Withrovdatas { get; set; }
 
         /// <summary>
         /// Gets or sets the actual score.
