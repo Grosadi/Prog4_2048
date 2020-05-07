@@ -51,7 +51,7 @@ namespace _2048.Logic
         /// <param name="xIncr">x Incrase.</param>
         /// <param name="side">The number of tile per side.</param>
         /// <returns>with a raction for a move.</returns>
-        public bool Move(int countdownFrom, int yIncr, int xIncr, int side)
+        private bool Move(int countdownFrom, int yIncr, int xIncr, int side)
         {
             bool moved = false;
             for (int i = 0; i < side * side; i++)

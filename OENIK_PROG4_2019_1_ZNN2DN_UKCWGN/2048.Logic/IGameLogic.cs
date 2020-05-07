@@ -53,7 +53,7 @@ namespace _2048.Logic
         /// <param name="xIncr">X incrase.</param>
         /// <param name="side">the number of tiles per side in the game.</param>
         /// <returns>with the right reaction after a move.</returns>
-        bool Move(int countdownFrom, int yIncr, int xIncr, int side);
+      //  bool Move(int countdownFrom, int yIncr, int xIncr, int side);
 
         /// <summary>
         /// sets the previous stage of the game, possible 5 times during game.
