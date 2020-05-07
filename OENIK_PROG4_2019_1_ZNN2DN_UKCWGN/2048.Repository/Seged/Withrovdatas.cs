@@ -11,16 +11,19 @@ namespace _2048.Repository.Seged
     {
         public Withrovdatas(int gamesize)
         {
-            this.values = new Tile[gamesize, gamesize];
-            //for (int i = 0; i < gamesize; i++)
-            //{
-            //    for (int j = 0; j < gamesize; j++)
-            //    {
-            //        this.values[i,j]= new Tile
-            //    }
-            //}
+            this.values = new int[gamesize, gamesize];
+            for (int i = 0; i < gamesize; i++)
+            {
+                for (int j = 0; j < gamesize; j++)
+                {
+                    this.values[i, j] = 0;
+                }
+            }
         }
-       public int Score { get; set; }
-        public Tile [,] values { get; set; }
+
+        public int Score { get; set; }
+
+        public int [,] values { get; set; }
+        public int Highest { get; set; }
     }
 }
