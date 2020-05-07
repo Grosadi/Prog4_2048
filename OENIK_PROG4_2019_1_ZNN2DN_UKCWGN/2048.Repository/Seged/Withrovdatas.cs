@@ -9,21 +9,36 @@ namespace _2048.Repository.Seged
     /// </summary>
     public class Withrovdatas
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Withrovdatas"/> class.
+        /// sets the previous state of the game.
+        /// </summary>
+        /// <param name="gamesize">the size of the game.</param>
         public Withrovdatas(int gamesize)
         {
-            this.values = new int[gamesize, gamesize];
+            this.Values = new int[gamesize, gamesize];
             for (int i = 0; i < gamesize; i++)
             {
                 for (int j = 0; j < gamesize; j++)
                 {
-                    this.values[i, j] = 0;
+                    this.Values[i, j] = 0;
                 }
             }
         }
 
+        /// <summary>
+        /// Gets or sets the data of score.
+        /// </summary>
         public int Score { get; set; }
 
-        public int [,] values { get; set; }
+        /// <summary>
+        /// Gets or sets values.
+        /// </summary>
+        public int[,] Values { get; set; }
+
+        /// <summary>
+        /// Gets or sets a the highest tile.
+        /// </summary>
         public int Highest { get; set; }
     }
 }

@@ -9,7 +9,6 @@ namespace _2048.Logic
     using System.Collections.Generic;
     using _2048.Repository;
     using _2048.Repository.Seged;
-    using System.IO;
 
     /// <summary>
     /// Handles Business Logic.
@@ -29,13 +28,6 @@ namespace _2048.Logic
             this.Withrovdata = new Stack<Withrovdatas>();
         }
 
-        StreamReader reader = new StreamReader("mentett.txt");
-
-        /// <summary>
-        /// Gets or sets list for store gamemodels for withraw.
-        /// </summary>
-        public Stack<Withrovdatas> Withrovdata;
-
         /// <summary>
         /// Gets or sets actual gamemodel.
         /// </summary>
@@ -45,6 +37,11 @@ namespace _2048.Logic
         /// Gets or sets actual repository.
         /// </summary>
         public IRepository Repository { get; set; }
+
+        /// <summary>
+        /// Gets or sets list for store gamemodels for withraw.
+        /// </summary>
+        private Stack<Withrovdatas> Withrovdata { get; set; }
 
         /// <summary>
         /// The main method of the game, responsible for moving the tiles and spawning them in the right way.
@@ -213,10 +210,10 @@ namespace _2048.Logic
                 {
                     for (int j = 0; j < this.GameModel.Board.GetLength(1); j++)
                     {
-                        if (vithrowtemp.values[i,j] != 0)
+                        if (vithrowtemp.Values[i, j] != 0)
                         {
                             // fordítva a kirajzolás miatt
-                            this.GameModel.Board[j, i] = new Tile(vithrowtemp.values[i, j]);
+                            this.GameModel.Board[j, i] = new Tile(vithrowtemp.Values[i, j]);
                         }
                     }
                 }
@@ -246,11 +243,11 @@ namespace _2048.Logic
                     if (this.GameModel.Board[j, i] != null)
                     {
                         // fordítva a kirajzolás miatt
-                        vithrowtemp.values[i,j]= this.GameModel.Board[j, i].Value;
+                        vithrowtemp.Values[i, j] = this.GameModel.Board[j, i].Value;
                     }
                     else
                     {
-                        vithrowtemp.values[i, j] = 0;
+                        vithrowtemp.Values[i, j] = 0;
                     }
                 }
             }

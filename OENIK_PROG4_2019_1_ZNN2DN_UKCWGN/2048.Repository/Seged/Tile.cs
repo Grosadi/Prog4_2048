@@ -81,6 +81,5 @@ namespace _2048.Repository.Seged
 
             return -1;
         }
-
     }
 }
