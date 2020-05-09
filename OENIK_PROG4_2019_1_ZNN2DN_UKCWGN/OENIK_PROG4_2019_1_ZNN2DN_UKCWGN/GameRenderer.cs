@@ -293,7 +293,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         public Drawing GetTimeValue()
         {
                 FormattedText fm = new FormattedText(
-                this.Model.DeltaTime.ToString() + " sec",
+                Math.Round(this.Model.DeltaTime, 0).ToString() + " sec",
                 System.Globalization.CultureInfo.CurrentCulture,
                 FlowDirection.LeftToRight,
                 new Typeface("Arial"),
