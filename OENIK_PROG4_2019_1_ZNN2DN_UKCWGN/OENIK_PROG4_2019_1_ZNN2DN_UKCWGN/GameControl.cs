@@ -9,6 +9,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
     using System.Windows;
     using System.Windows.Input;
     using System.Windows.Media;
+    using System.Windows.Threading;
     using _2048.Logic;
     using _2048.Repository;
 
@@ -36,6 +37,10 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         /// renderer.
         /// </summary>
         private GameRenderer renderer;
+
+        private Stopwatch sw;
+
+        private DispatcherTimer tickTimer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GameControl"/> class.
@@ -68,14 +73,22 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 case Key.Down: this.logic.MoveDown(); break;
                 case Key.Space:
                     {
-                        bool succes = this.logic.WithDrawal();
-                        if (succes)
+                        try
                         {
-                            break;
+                            bool succes = this.logic.WithDrawal();
+                            if (succes)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Out of Withdraws!");
+                                break;
+                            }
                         }
-                        else
+                        catch (Exception)
                         {
-                            MessageBox.Show("Out of Withdraws!");
+                            MessageBox.Show("Nothing to withdraw!");
                             break;
                         }
                     }
@@ -118,7 +131,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Nincs mentett játék!");
+                    MessageBox.Show("No saved game!");
                     this.repo.NewGame(4, 0);
                 }
             }
@@ -127,6 +140,16 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 int size = int.Parse(win.GetType().GetProperty("Size").GetValue(win).ToString());
                 int time = int.Parse(win.GetType().GetProperty("Time").GetValue(win).ToString());
                 this.repo.NewGame(size, time);
+                if (time > 0)
+                {
+                    this.sw = new Stopwatch();
+                    this.sw.Start();
+
+                    this.tickTimer = new DispatcherTimer();
+                    this.tickTimer.Interval = TimeSpan.FromSeconds(1);
+                    this.tickTimer.Tick += this.TickTimer_Tick;
+                    this.tickTimer.Start();
+                }
             }
 
             if (win != null)
@@ -138,10 +161,28 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             this.InvalidateVisual();
         }
 
+        private void TickTimer_Tick(object sender, EventArgs e)
+        {
+            if (this.model.DeltaTime > 0)
+            {
+                this.model.DeltaTime = this.model.Matchtime - this.sw.Elapsed.TotalSeconds;
+                this.InvalidateVisual();
+            }
+            else
+            {
+                this.tickTimer.Stop();
+                MessageBox.Show("Time is up!\nYour score is: " + this.model.Score.ToString());
+                Window.GetWindow(this).Close();
+            }
+        }
+
         private void Win_Closed(object sender, EventArgs e)
         {
-            MessageBox.Show("Mentés és név bekérés");
-            this.repo.SaveGame("log.txt");
+            if (this.model.Matchtime == 0)
+            {
+                MessageBox.Show("Mentés és név bekérés");
+                this.repo.SaveGame("log.txt");
+            }
         }
     }
 }
