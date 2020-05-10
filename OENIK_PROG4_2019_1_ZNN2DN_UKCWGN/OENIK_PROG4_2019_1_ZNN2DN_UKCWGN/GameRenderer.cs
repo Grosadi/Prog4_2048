@@ -19,8 +19,6 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
     /// </summary>
     public class GameRenderer
     {
-        public GameModel Model { get; set; }
-
         private int width = 400;
         private int height = 500;
 
@@ -32,6 +30,11 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         {
             this.Model = model;
         }
+
+        /// <summary>
+        /// Gets or sets the drawable GameModel.
+        /// </summary>
+        public GameModel Model { get; set; }
 
         /// <summary>
         /// Gets or sets the background.
@@ -106,9 +109,9 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             if (this.OldBackground == null)
             {
                 this.OldBackground = new GeometryDrawing(
-                    Brushes.White,
+                    Brushes.LightGoldenrodYellow,
                     null,
-                    new RectangleGeometry(new Rect(0, 0, this.width, this.height)));
+                    new RectangleGeometry(new Rect(0, 0, this.width + 20, this.height + 20)));
             }
 
             return this.OldBackground;
@@ -137,19 +140,33 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                    new RectangleGeometry(new Rect(x, y, tileSize, tileSize), 15, 15)));
 
                 FontFamilyConverter ffc = new FontFamilyConverter();
-                FontFamily fontFamily = (FontFamily)ffc.ConvertFromString("Helvetica Neue");
+                FontFamily fontFamily = (FontFamily)ffc.ConvertFromString("Imprint MT Shadow");
                 Typeface typeface = new Typeface(fontFamily, FontStyles.Normal, FontWeights.Bold, FontStretches.Condensed);
+
+                int fontsize = 25;
+                if (this.Model.Gamesize == 3)
+                {
+                    fontsize = 45;
+                }
+
+                if (this.Model.Gamesize == 4)
+                {
+                    fontsize = 35;
+                }
+
+                Brush letterColor = this.ValueToForgroundBrush(tile.Value);
+
                 FormattedText fm = new FormattedText(
                     tile.Value.ToString(),
                     System.Globalization.CultureInfo.CurrentCulture,
                     FlowDirection.LeftToRight,
                     typeface,
-                    20,
-                    Brushes.Red);
+                    fontsize,
+                    letterColor);
 
                 dg.Children.Add(new GeometryDrawing(
-                    Brushes.Red,
-                    new Pen(Brushes.Red, 1),
+                    letterColor,
+                    new Pen(letterColor, 1),
                     fm.BuildGeometry(new Point(
                         x + (tileSize / 2) - (fm.Width / 2),
                         y + (tileSize / 2) - (fm.Height / 2)))));
@@ -158,7 +175,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             }
 
             return new GeometryDrawing(
-                Brushes.LightGray,
+                this.ValueToBackgroundBrush(0),
                 new Pen(Brushes.Black, 2),
                 new RectangleGeometry(new Rect(x, y, tileSize, tileSize), 15, 15));
         }
@@ -231,7 +248,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 Brushes.Gold);
 
                 this.OldWithDraw = new GeometryDrawing(
-                    null,
+                    Brushes.Gold,
                     new Pen(Brushes.Gold, 1),
                     fm.BuildGeometry(new Point(5, 5)));
             }
@@ -254,7 +271,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 Brushes.Gold);
 
             GeometryDrawing wd = new GeometryDrawing(
-                null,
+                Brushes.Gold,
                 new Pen(Brushes.Gold, 1),
                 fm.BuildGeometry(new Point(50, 50)));
 
@@ -278,9 +295,9 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 Brushes.Gold);
 
                 this.OldTime = new GeometryDrawing(
-                    null,
+                    Brushes.Gold,
                     new Pen(Brushes.Gold, 1),
-                    fm.BuildGeometry(new Point(this.width - (5 * 10), 5)));
+                    fm.BuildGeometry(new Point(this.width - 50, 10)));
             }
 
             return this.OldTime;
@@ -292,18 +309,30 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         /// <returns>Remaining time as formatted text.</returns>
         public Drawing GetTimeValue()
         {
+                string timeValue = "∞";
+                int fontSize = 75;
+                int x = 55;
+                int y = 10;
+                if (this.Model.Matchtime > 0)
+                {
+                    timeValue = Math.Round(this.Model.DeltaTime, 0).ToString() + " sec";
+                    fontSize = 20;
+                    x = 60;
+                    y = 35;
+                }
+
                 FormattedText fm = new FormattedText(
-                Math.Round(this.Model.DeltaTime, 0).ToString() + " sec",
+                timeValue,
                 System.Globalization.CultureInfo.CurrentCulture,
                 FlowDirection.LeftToRight,
                 new Typeface("Arial"),
-                20,
+                fontSize,
                 Brushes.Gold);
 
                 GeometryDrawing time = new GeometryDrawing(
-                    null,
+                    Brushes.Gold,
                     new Pen(Brushes.Gold, 1),
-                    fm.BuildGeometry(new Point(this.width - 60, 30)));
+                    fm.BuildGeometry(new Point(this.width - x, y)));
 
                 return time;
         }
@@ -312,15 +341,15 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         /// Returns a specified Brush depends of TileValue.
         /// </summary>
         /// <param name="value"> Tile value.</param>
-        /// <returns>A brush.</returns>
+        /// <returns>A background brush.</returns>
         public Brush ValueToBackgroundBrush(int value)
         {
             switch (value)
             {
                 case 2:
-                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#EEE4DA");
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#ffde8f");
                 case 4:
-                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#ECE0C8");
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#f0cb71");
                 case 8:
                     return (SolidColorBrush)new BrushConverter().ConvertFrom("#F2B179");
                 case 16:
@@ -328,21 +357,59 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 case 32:
                     return (SolidColorBrush)new BrushConverter().ConvertFrom("#F57C5F");
                 case 64:
-                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#F65D3B");
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#ed8845");
                 case 128:
-                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#EDCE71");
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#eda445");
                 case 256:
-                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#EECC61");
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#edea45");
                 case 512:
-                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#ECC850");
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#bae342");
                 case 1024:
-                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#EDC53F");
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#afd835");
                 case 2048:
-                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#EEC22E");
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#ffd700");
                 case 4096:
-                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#BEEE2E");
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#c3fe16");
                 default:
-                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#3D3A33");
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#fff0c2");
+            }
+        }
+
+        /// <summary>
+        /// Returns a specified Brush depends of TileValue.
+        /// </summary>
+        /// <param name="value">Tile value.</param>
+        /// <returns>A foreground brush.</returns>
+        public Brush ValueToForgroundBrush(int value)
+        {
+            switch (value)
+            {
+                case 2:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#b89d5d");
+                case 4:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#9f8138");
+                case 8:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#f18122");
+                case 16:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#de5108");
+                case 32:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#ef3b10");
+                case 64:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#9f490e");
+                case 128:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#d5d20a");
+                case 256:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#c4ca19");
+                case 512:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#e9f32c");
+                case 1024:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#fff82e");
+                case 2048:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#00ffb7");
+                case 4096:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#ffd700");
+                default:
+                    return (SolidColorBrush)new BrushConverter().ConvertFrom("#fff0c2");
             }
         }
     }
