@@ -111,6 +111,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             if (this.model.Gamewin)
             {
                 MessageBox.Show("You Win!\nBut you can continue playing!");
+                this.model.Gamewin = false;
             }
         }
 
