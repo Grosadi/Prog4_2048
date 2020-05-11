@@ -124,7 +124,6 @@ C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_201
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\Castle.Core.dll
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\EntityFramework.dll
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\Moq.dll
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\nunit.framework.dll
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\System.Threading.Tasks.Extensions.dll
@@ -136,7 +135,6 @@ C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_201
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\Castle.Core.xml
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\EntityFramework.xml
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\Moq.xml
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\nunit.framework.pdb
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\nunit.framework.xml
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic.Tests\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
