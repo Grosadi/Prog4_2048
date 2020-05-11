@@ -7,9 +7,7 @@ namespace _2048.Repository
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using _2048.Data;
     using _2048.Repository.Seged;
 
     /// <summary>
@@ -19,35 +17,21 @@ namespace _2048.Repository
     {
         private Random rnd = new Random();
 
+        private DataBaseContext dbContext;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GameRepository"/> class.
         /// </summary>
         public GameRepository()
         {
             this.Model = new GameModel();
+            this.dbContext = new DataBaseContext();
         }
 
         /// <summary>
         /// Gets or sets the GameModel instance.
         /// </summary>
         public GameModel Model { get; set; }
-
-        /// <summary>
-        /// Set Merged attribution back to false for the whole board.
-        /// </summary>
-        public void ClearMerged()
-        {
-            for (int i = 0; i < this.Model.Gamesize; i++)
-            {
-                for (int j = 0; j < this.Model.Gamesize; j++)
-                {
-                    if (this.Model.Board[i, j] != null)
-                    {
-                        this.Model.Board[i, j].Merged = false;
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Load the last game from file.
@@ -143,6 +127,15 @@ namespace _2048.Repository
         }
 
         /// <summary>
+        /// Get all player from db, ordered by score.
+        /// </summary>
+        /// <returns>Returns a list with players.</returns>
+        public List<PLAYER> GetPlayerByScore()
+        {
+            return this.dbContext.GetAll();
+        }
+
+        /// <summary>
         /// After each move it places a new tile randomly.
         /// </summary>
         public void SpawnRandomTile()
@@ -156,6 +149,23 @@ namespace _2048.Repository
                 {
                     this.Model.Board[x, y] = new Tile(2 * this.rnd.Next(1, 3));
                     success = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set Merged attribution back to false for the whole board.
+        /// </summary>
+        public void ClearMerged()
+        {
+            for (int i = 0; i < this.Model.Gamesize; i++)
+            {
+                for (int j = 0; j < this.Model.Gamesize; j++)
+                {
+                    if (this.Model.Board[i, j] != null)
+                    {
+                        this.Model.Board[i, j].Merged = false;
+                    }
                 }
             }
         }

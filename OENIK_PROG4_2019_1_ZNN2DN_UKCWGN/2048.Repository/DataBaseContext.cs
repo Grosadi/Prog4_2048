@@ -7,8 +7,6 @@ namespace _2048.Repository
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using _2048.Data;
 
     /// <summary>
@@ -24,6 +22,21 @@ namespace _2048.Repository
         public DataBaseContext()
         {
             this.highScoreDB = new HighScoreDBEntities();
+        }
+
+        /// <summary>
+        /// Get the all player from DB.
+        /// </summary>
+        /// <returns>Returns with a list of players, rank by score.</returns>
+        public List<PLAYER> GetAll()
+        {
+            List<PLAYER> list = this.highScoreDB.PLAYER.ToList();
+
+            var players = from x in list
+                          orderby x.PLAYER_SCORE descending
+                          select x;
+
+            return players.ToList();
         }
 
         /// <summary>
