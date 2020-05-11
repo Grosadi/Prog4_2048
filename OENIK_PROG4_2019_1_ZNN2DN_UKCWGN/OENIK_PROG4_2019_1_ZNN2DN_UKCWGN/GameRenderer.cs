@@ -5,10 +5,6 @@
 namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Media;
     using _2048.Repository;
@@ -63,19 +59,6 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         public Drawing BuildDrawing()
         {
             DrawingGroup dg = new DrawingGroup();
-
-            /*this.Model.Gamesize = 4; // ezek a tesztelés miatt vannak itt, INNENTŐL-
-            this.Model.Board = new Tile[this.Model.Gamesize, this.Model.Gamesize];
-            this.Model.Score = 1204235;
-            this.Model.WithdrawNum = 5;
-
-            for (int i = 0; i < this.Model.Board.GetLength(0); i++)
-            {
-                for (int j = 0; j < this.Model.Board.GetLength(1); j++)
-                {
-                    this.Model.Board[i, j] = new Tile(4096);
-                }
-            } // - IDÁIG*/
 
             // background
             dg.Children.Add(this.GetBackground());

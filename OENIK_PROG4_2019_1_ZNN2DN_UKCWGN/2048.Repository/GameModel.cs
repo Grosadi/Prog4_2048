@@ -12,20 +12,6 @@ namespace _2048.Repository
     /// </summary>
     public class GameModel : IGameModel
     {
-        // private IRepository repo;
-        /*public GameModel(int size, int matchTime)
-        {
-            this.repo = new GameRepository();
-            this.repo.NewGame(size, matchTime);
-        }*/
-        /*public GameModel(string file)
-        {
-            this.repo = new GameRepository();  !!!!!!!!!!!!
-            string[] lines = File.ReadAllLines(file); !!!!!!!!!!!!!!!!!!
-
-            this.repo.LoadGame(lines);
-        }*/
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GameModel"/> class.
         /// </summary>

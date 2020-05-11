@@ -1,34 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿// <copyright file="GameWindow.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 {
+    using System.Windows;
+
     /// <summary>
     /// Interaction logic for GameWindow.xaml.
     /// </summary>
     public partial class GameWindow : Window
     {
-        /// <summary>
-        /// Gets or sets the size of the table.
-        /// </summary>
-        public int Size { get; set; }
-
-        /// <summary>
-        /// Gets or sets the timer.
-        /// </summary>
-        public int Time { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GameWindow"/> class.
         /// Constructor for Load Game.
@@ -52,9 +34,18 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             this.Time = time;
         }
 
+        /// <summary>
+        /// Gets or sets the size of the table.
+        /// </summary>
+        public int Size { get; set; }
+
+        /// <summary>
+        /// Gets or sets the timer.
+        /// </summary>
+        public int Time { get; set; }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
         }
     }
 }
