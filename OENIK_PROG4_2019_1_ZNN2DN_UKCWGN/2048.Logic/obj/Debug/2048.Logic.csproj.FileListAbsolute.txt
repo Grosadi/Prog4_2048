@@ -63,5 +63,3 @@ C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_201
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\obj\Debug\2048.Logic.csprojAssemblyReference.cache
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\obj\Debug\2048.Logic.csproj.CoreCompileInputs.cache
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\obj\Debug\2048.Logic.csproj.CopyComplete
-C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\bin\Debug\HighScoreDB.mdf
-C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\2048.Logic\bin\Debug\HighScoreDB_log.ldf

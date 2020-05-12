@@ -41,7 +41,7 @@ namespace _2048.Logic
         /// <summary>
         /// Gets or sets list for store gamemodels for withraw.
         /// </summary>
-        private Stack<Withrovdatas> Withrovdata { get; set; }
+        public Stack<Withrovdatas> Withrovdata { get; set; }
 
         /// <summary>
         /// The main method of the game, responsible for moving the tiles and spawning them in the right way.
@@ -51,7 +51,7 @@ namespace _2048.Logic
         /// <param name="xIncr">x Incrase.</param>
         /// <param name="side">The number of tile per side.</param>
         /// <returns>with a raction for a move.</returns>
-        private bool Move(int countdownFrom, int yIncr, int xIncr, int side)
+        public bool Move(int countdownFrom, int yIncr, int xIncr, int side)
         {
             bool moved = false;
             for (int i = 0; i < side * side; i++)
