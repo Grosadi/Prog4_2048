@@ -49,6 +49,7 @@ namespace _2048.Repository
         {
             this.highScoreDB.PLAYER.Add(new PLAYER()
             {
+                PLAYER_ID = this.highScoreDB.PLAYER.Count() + 1,
                 PLAYER_NAME = name,
                 PLAYER_SCORE = score,
                 PLAYER_HIGHEST_TILE = highest,

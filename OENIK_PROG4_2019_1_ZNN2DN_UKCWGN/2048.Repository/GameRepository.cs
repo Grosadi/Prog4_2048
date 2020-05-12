@@ -136,6 +136,17 @@ namespace _2048.Repository
         }
 
         /// <summary>
+        /// Add new player to the Highscore DB.
+        /// </summary>
+        /// <param name="name">Name of the player.</param>
+        /// <param name="score">Score of the player.</param>
+        /// <param name="highest">Highest tile of the player.</param>
+        public void AddPlayer(string name, int score, int highest)
+        {
+            this.dbContext.AddPlayer(name, score, highest);
+        }
+
+        /// <summary>
         /// After each move it places a new tile randomly.
         /// </summary>
         public void SpawnRandomTile()
