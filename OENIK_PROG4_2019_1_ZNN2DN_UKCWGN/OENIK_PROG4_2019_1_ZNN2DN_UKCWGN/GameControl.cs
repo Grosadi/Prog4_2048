@@ -181,7 +181,8 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         {
             if (this.model.Matchtime == 0)
             {
-                MessageBox.Show("Mentés és név bekérés");
+                NewPlayerToHSWindow newPlayer = new NewPlayerToHSWindow(this.model.Score, this.model.Highest);
+                newPlayer.ShowDialog();
                 this.repo.SaveGame("log.txt");
             }
         }

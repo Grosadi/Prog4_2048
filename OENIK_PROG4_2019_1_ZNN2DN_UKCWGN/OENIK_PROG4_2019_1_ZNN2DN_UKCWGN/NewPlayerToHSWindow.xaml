@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OENIK_PROG4_2019_1_ZNN2DN_UKCWGN"
         mc:Ignorable="d"
-        Title="NewPlayerToHSWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Save your score!"
+        Icon="Blackvariant-Button-Ui-Requests-2-2048.ico"
+        Height="123.04" Width="292.941">
+    <Grid Background="LightGoldenrodYellow">
+        <TextBlock HorizontalAlignment="Left" Foreground="Gold" Margin="11,26,0,0" TextWrapping="Wrap" Text="Your Name: " FontSize="20" VerticalAlignment="Top"/>
+        <TextBox ForceCursor="True" HorizontalAlignment="Left" Height="23" BorderThickness="0" Background="YellowGreen" Foreground="Green" FontSize="20" Margin="123,29,0,0" TextWrapping="Wrap" Text="" x:Name="Player_Name" VerticalAlignment="Top" Width="153"/>
+        <Button Content="Save" Foreground="Green" Background="GreenYellow" BorderBrush="Green" Click="Button_Click" HorizontalAlignment="Left" Margin="91,63,0,0" VerticalAlignment="Top" Width="92"/>
     </Grid>
 </Window>
