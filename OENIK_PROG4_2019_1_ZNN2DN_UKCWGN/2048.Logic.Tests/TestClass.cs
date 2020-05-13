@@ -70,5 +70,29 @@ namespace _2048.Logic.Tests
             Assert.IsFalse(this.logic.WithDrawal());
         }
 
+        [Test]
+        public void IsMergeStatusOftheTilesSetBackAfteraMove()
+        {
+            this.logic.GameModel.Board = new Tile[4, 4];
+            this.logic.GameModel.Gamesize = 4;
+            this.logic.GameModel.Board[0, 0] = new Tile(2);
+            this.logic.GameModel.Board[0, 1] = new Tile(2);
+            this.logic.MoveUp();
+            this.logic.MoveDown();
+            this.logic.MoveLeft();
+            this.logic.MoveUp();
+            bool temp = true;
+            for (int i = 0; i < this.logic.GameModel.Board.GetLength(0); i++)
+            {
+                for (int j = 0; j < this.logic.GameModel.Board.GetLength(1); j++)
+                {
+                    if (this.logic.GameModel.Board[i, j] != null)
+                    {
+                        temp = this.logic.GameModel.Board[i, j].Merged;
+                        Assert.IsTrue(temp);
+                    }
+                }
+            }
+        }
     }
 }
