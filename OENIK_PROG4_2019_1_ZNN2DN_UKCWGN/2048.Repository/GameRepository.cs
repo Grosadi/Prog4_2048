@@ -147,6 +147,14 @@ namespace _2048.Repository
         }
 
         /// <summary>
+        /// Save the changes of the DB.
+        /// </summary>
+        public void SaveChanges()
+        {
+            this.dbContext.SaveChanges();
+        }
+
+        /// <summary>
         /// After each move it places a new tile randomly.
         /// </summary>
         public void SpawnRandomTile()

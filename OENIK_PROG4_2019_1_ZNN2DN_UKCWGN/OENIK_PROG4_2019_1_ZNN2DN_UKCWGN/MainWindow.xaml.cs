@@ -4,6 +4,7 @@
 
 namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 {
+    using _2048.Repository;
     using System;
     using System.Windows;
 
@@ -17,7 +18,14 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         /// </summary>
         public MainWindow()
         {
+            this.Closing += this.MainWindow_Closing;
             this.InitializeComponent();
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            HighScoreVM vm = new HighScoreVM();
+            vm.SaveChanges();
         }
 
         private void NewGameButton_Click(object sender, RoutedEventArgs e)

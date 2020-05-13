@@ -71,6 +71,14 @@ namespace _2048.Repository
         }
 
         /// <summary>
+        /// Save the changes of the DB.
+        /// </summary>
+        public void SaveChanges()
+        {
+            this.highScoreDB.SaveChanges();
+        }
+
+        /// <summary>
         /// Removes all entities from DB.
         /// </summary>
         public void ResetDataBase()
