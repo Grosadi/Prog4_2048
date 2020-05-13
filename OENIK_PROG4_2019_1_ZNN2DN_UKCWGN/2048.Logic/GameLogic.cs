@@ -138,6 +138,7 @@ namespace _2048.Logic
                 {
                     this.GameModel.Gamewin = true;
                 }
+
                 this.SaveGameState();
             }
 

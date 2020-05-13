@@ -19,7 +19,7 @@ namespace _2048.Logic.Tests
         private IGameModel gameModel;
 
         /// <summary>
-        /// Sets game.
+        /// Sets game for the test.
         /// </summary>
         [SetUp]
         public void Setup()
@@ -30,6 +30,9 @@ namespace _2048.Logic.Tests
             this.repository.NewGame(4, 0);
         }
 
+        /// <summary>
+        /// Tests if two tile can be merged if they dont have the same value.
+        /// </summary>
         [Test]
         public void MoveupWhenItIsForbidden()
         {
@@ -41,6 +44,9 @@ namespace _2048.Logic.Tests
             Assert.That(this.logic.GameModel.Board[0, 0].Value == 2);
         }
 
+        /// <summary>
+        /// Test If two Tile have the same value and they sholud merge, their value adds, and so score sets.
+        /// </summary>
         [Test]
         public void MoveIfItsPossibleAndMoveSetsScore()
         {
@@ -54,6 +60,9 @@ namespace _2048.Logic.Tests
             Assert.That(this.logic.GameModel.Score.Equals(4));
         }
 
+        /// <summary>
+        /// Tests if you only can withrow if you have havent used all your possibilities yet.
+        /// </summary>
         [Test]
         public void IswithrowWorksOnlyWhenYouHaveMoreLeft()
         {
@@ -70,6 +79,9 @@ namespace _2048.Logic.Tests
             Assert.IsFalse(this.logic.WithDrawal());
         }
 
+        /// <summary>
+        /// Tests if after a move the tiles mergeg status sets back to the default.
+        /// </summary>
         [Test]
         public void IsMergeStatusOftheTilesSetBackAfteraMove()
         {
@@ -93,6 +105,25 @@ namespace _2048.Logic.Tests
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Test if Highest value of the gamemodel sets to the hihest value we got from during move.
+        /// </summary>
+        [Test]
+        public void IsHihghestreturnwiththehighestvalueWeGetFromAMerge()
+        {
+            this.logic.GameModel.Board = new Tile[4, 4];
+            this.logic.GameModel.Gamesize = 4;
+            this.logic.GameModel.Board[0, 0] = new Tile(8);
+            this.logic.GameModel.Board[0, 1] = new Tile(8);
+            this.logic.GameModel.Board[0, 2] = new Tile(9);
+            this.logic.GameModel.Board[0, 3] = new Tile(12);
+            this.logic.GameModel.Board[1, 1] = new Tile(12);
+            this.logic.GameModel.Board[1, 2] = new Tile(12);
+            this.logic.MoveUp();
+
+            Assert.That(this.logic.GameModel.Highest == 24);
         }
     }
 }
