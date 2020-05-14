@@ -5,6 +5,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 {
     using System.Windows;
     using System.Windows.Input;
+    using System.Windows.Media;
 
     /// <summary>
     /// Interaction logic for NewPlayerToHSWindow.xaml.
@@ -47,14 +48,18 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 case Key.Enter:
                     this.vm.AddPlayer(this.Player_Name.Text, this.score, this.highest);
 
-                    MessageBox.Show("Saved succesfully!");
+                    MessageBoxInfos infos = new MessageBoxInfos("Saved succesfully!", "OK", Brushes.Green);
+                    CustomMessageBox msgBox = new CustomMessageBox(infos);
+                    msgBox.ShowDialog();
 
                     this.Close();
                     break;
                 case Key.Space:
                     this.vm.AddPlayer(this.Player_Name.Text, this.score, this.highest);
 
-                    MessageBox.Show("Saved succesfully!");
+                    MessageBoxInfos infoS = new MessageBoxInfos("Saved succesfully!", "OK", Brushes.Green);
+                    CustomMessageBox msgbox = new CustomMessageBox(infoS);
+                    msgbox.ShowDialog();
 
                     this.Close();
                     break;
@@ -65,7 +70,9 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         {
             this.vm.AddPlayer(this.Player_Name.Text, this.score, this.highest);
 
-            MessageBox.Show("Saved succesfully!");
+            MessageBoxInfos infos = new MessageBoxInfos("Saved succesfully!", "OK", Brushes.Green);
+            CustomMessageBox msgBox = new CustomMessageBox(infos);
+            msgBox.ShowDialog();
 
             this.Close();
         }

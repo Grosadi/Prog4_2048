@@ -160,3 +160,5 @@ C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_201
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\bin\Debug\GalaSoft.MvvmLight.Platform.xml
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\obj\Debug\NewPlayerToHSWindow.g.cs
 C:\Users\Bogdán István\source\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\obj\Debug\NewPlayerToHSWindow.baml
+C:\Users\hp EliteBook\Documents\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\obj\Debug\CustomMessageBox.g.cs
+C:\Users\hp EliteBook\Documents\oenik_prog4_2020_1_znn2dn_ukcwgn\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\OENIK_PROG4_2019_1_ZNN2DN_UKCWGN\obj\Debug\CustomMessageBox.baml

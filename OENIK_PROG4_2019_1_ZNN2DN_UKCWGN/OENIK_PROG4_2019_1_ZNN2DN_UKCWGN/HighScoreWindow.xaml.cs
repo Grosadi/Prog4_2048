@@ -1,24 +1,13 @@
-﻿using _2048.Data;
-using _2048.Repository;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿// <copyright file="HighScoreWindow.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 {
+    using System.Windows;
+
     /// <summary>
-    /// Interaction logic for HighScoreWindow.xaml
+    /// Interaction logic for HighScoreWindow.xaml.
     /// </summary>
     public partial class HighScoreWindow : Window
     {

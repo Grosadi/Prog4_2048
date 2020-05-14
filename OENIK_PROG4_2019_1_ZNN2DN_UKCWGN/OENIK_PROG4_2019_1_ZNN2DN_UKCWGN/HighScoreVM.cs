@@ -42,6 +42,14 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
         }
 
         /// <summary>
+        /// Save the changes of the DB.
+        /// </summary>
+        public void SaveChanges()
+        {
+            this.repo.SaveChanges();
+        }
+
+        /// <summary>
         /// Add new player to the DB.
         /// </summary>
         /// <param name="name">Name of the player.</param>

@@ -42,6 +42,8 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 
         private DispatcherTimer tickTimer;
 
+        private int gameWinCounter;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GameControl"/> class.
         /// Constructor for Load Game.
@@ -73,22 +75,31 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 case Key.Down: this.logic.MoveDown(); break;
                 case Key.Space:
                     {
-                        try
-                        {
-                            bool succes = this.logic.WithDrawal();
-                            if (succes)
+                        bool succes = this.logic.WithDrawal();
+                        if (succes)
+                           {
+                              break;
+                           }
+                        else if (this.model.WithdrawNum < 1)
                             {
+                                MessageBoxInfos infoS = new MessageBoxInfos(
+                                                         "Out of Withdraws!",
+                                                         "OK",
+                                                         Brushes.Red);
+                                CustomMessageBox msgbox = new CustomMessageBox(infoS);
+                                msgbox.ShowDialog();
+
                                 break;
                             }
-                            else
-                            {
-                                MessageBox.Show("Out of Withdraws!");
-                                break;
-                            }
-                        }
-                        catch (Exception)
+                        else
                         {
-                            MessageBox.Show("Nothing to withdraw!");
+                            MessageBoxInfos infos = new MessageBoxInfos(
+                                                            "Nothing to withdraw!",
+                                                            "OK",
+                                                            Brushes.YellowGreen);
+                            CustomMessageBox msgBox = new CustomMessageBox(infos);
+                            msgBox.ShowDialog();
+
                             break;
                         }
                     }
@@ -98,19 +109,38 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
 
             if (this.model.GameOver && this.model.WithdrawNum == 0)
             {
-                MessageBox.Show("Game Over!");
+                MessageBoxInfos infos = new MessageBoxInfos(
+                    "Game Over!",
+                    "OK",
+                    Brushes.Red);
+                CustomMessageBox msgBox = new CustomMessageBox(infos);
+                msgBox.ShowDialog();
 
                 Window.GetWindow(this).Close();
             }
             else if (this.model.GameOver)
             {
-                MessageBox.Show("Game Over, but\nYou left " + this.model.WithdrawNum.ToString() + " withdraws!");
+                MessageBoxInfos infos = new MessageBoxInfos(
+                    "Game Over, but\nYou left " + this.model.WithdrawNum.ToString() + " withdraws!",
+                    "Cool",
+                    Brushes.YellowGreen);
+                CustomMessageBox msgBox = new CustomMessageBox(infos);
+                msgBox.ShowDialog();
+
                 this.model.GameOver = false;
             }
 
-            if (this.model.Gamewin)
+            if (this.model.Gamewin && this.gameWinCounter < 1)
             {
-                MessageBox.Show("You Win!\nBut you can continue playing!");
+                this.gameWinCounter++;
+
+                MessageBoxInfos infos = new MessageBoxInfos(
+                    "You Win!\nBut you can continue playing!",
+                    "Cool",
+                    Brushes.Green);
+                CustomMessageBox msgBox = new CustomMessageBox(infos);
+                msgBox.ShowDialog();
+
                 this.model.Gamewin = false;
             }
         }
@@ -121,6 +151,7 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             this.model = this.repo.Model;
             this.logic = new GameLogic(this.model, this.repo);
             this.renderer = new GameRenderer(this.model);
+            this.gameWinCounter = 0;
 
             int n = 0;
             Window win = Window.GetWindow(this);
@@ -132,7 +163,10 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("No saved game!");
+                    MessageBoxInfos infos = new MessageBoxInfos("No saved game!", "OK", Brushes.Red);
+                    CustomMessageBox msgBox = new CustomMessageBox(infos);
+                    msgBox.ShowDialog();
+
                     this.repo.NewGame(4, 0);
                 }
             }
@@ -172,7 +206,14 @@ namespace OENIK_PROG4_2019_1_ZNN2DN_UKCWGN
             else
             {
                 this.tickTimer.Stop();
-                MessageBox.Show("Time is up!\nYour score is: " + this.model.Score.ToString());
+
+                MessageBoxInfos infos = new MessageBoxInfos(
+                    "Time is up!\nYour score is: " + this.model.Score.ToString(),
+                    "OK",
+                    Brushes.YellowGreen);
+                CustomMessageBox msgBox = new CustomMessageBox(infos);
+                msgBox.ShowDialog();
+
                 Window.GetWindow(this).Close();
             }
         }
