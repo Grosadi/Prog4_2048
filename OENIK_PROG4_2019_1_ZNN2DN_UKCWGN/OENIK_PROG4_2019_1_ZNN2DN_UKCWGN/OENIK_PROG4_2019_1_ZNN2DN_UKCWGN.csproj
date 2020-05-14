@@ -84,6 +84,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CustomMessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -99,6 +103,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="HighScoreVM.cs" />
     <Compile Include="GameControl.cs" />
@@ -119,6 +126,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageBoxInfos.cs" />
     <Compile Include="NewPlayerToHSWindow.xaml.cs">
       <DependentUpon>NewPlayerToHSWindow.xaml</DependentUpon>
     </Compile>
