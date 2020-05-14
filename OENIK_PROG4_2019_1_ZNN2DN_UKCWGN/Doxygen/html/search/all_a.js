@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['nunit_203_2e12_20_2d_20may_2014_2c_202019_73',['NUnit 3.12 - May 14, 2019',['../md__c_1__users_hp__elite_book__documents_oenik_prog4_2020_1_znn2dn_ukcwgn__o_e_n_i_k__p_r_o_g4_2e974aadb09660948d956e170d339fcdc.html',1,'']]],
+  ['newgame_74',['NewGame',['../class__2048_1_1_repository_1_1_game_repository.html#a8f2ca518cf731f67840849b2ffbb00d8',1,'_2048.Repository.GameRepository.NewGame()'],['../interface__2048_1_1_repository_1_1_i_repository.html#abb51a1d77bde5133879c794e3256dcdd',1,'_2048.Repository.IRepository.NewGame()']]],
+  ['newplayertohswindow_75',['NewPlayerToHSWindow',['../class_o_e_n_i_k___p_r_o_g4__2019__1___z_n_n2_d_n___u_k_c_w_g_n_1_1_new_player_to_h_s_window.html',1,'OENIK_PROG4_2019_1_ZNN2DN_UKCWGN.NewPlayerToHSWindow'],['../class_o_e_n_i_k___p_r_o_g4__2019__1___z_n_n2_d_n___u_k_c_w_g_n_1_1_new_player_to_h_s_window.html#a77f6b121201c537951df0cfd7c9376a2',1,'OENIK_PROG4_2019_1_ZNN2DN_UKCWGN.NewPlayerToHSWindow.NewPlayerToHSWindow()'],['../class_o_e_n_i_k___p_r_o_g4__2019__1___z_n_n2_d_n___u_k_c_w_g_n_1_1_new_player_to_h_s_window.html#af6d73b661198869ebee35949434a7f26',1,'OENIK_PROG4_2019_1_ZNN2DN_UKCWGN.NewPlayerToHSWindow.NewPlayerToHSWindow(int score, int highest)']]]
+];

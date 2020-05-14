@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['oenik_5fprog4_5f2019_5f1_5fznn2dn_5fukcwgn',['OENIK_PROG4_2019_1_ZNN2DN_UKCWGN',['../namespace_o_e_n_i_k___p_r_o_g4__2019__1___z_n_n2_d_n___u_k_c_w_g_n.html',1,'']]],
-  ['properties',['Properties',['../namespace_o_e_n_i_k___p_r_o_g4__2019__1___z_n_n2_d_n___u_k_c_w_g_n_1_1_properties.html',1,'OENIK_PROG4_2019_1_ZNN2DN_UKCWGN']]]
+  ['_5f2048_130',['_2048',['../namespace__2048.html',1,'']]],
+  ['data_131',['Data',['../namespace__2048_1_1_data.html',1,'_2048']]],
+  ['logic_132',['Logic',['../namespace__2048_1_1_logic.html',1,'_2048']]],
+  ['repository_133',['Repository',['../namespace__2048_1_1_repository.html',1,'_2048']]],
+  ['seged_134',['Seged',['../namespace__2048_1_1_repository_1_1_seged.html',1,'_2048::Repository']]],
+  ['tests_135',['Tests',['../namespace__2048_1_1_logic_1_1_tests.html',1,'_2048::Logic']]]
 ];

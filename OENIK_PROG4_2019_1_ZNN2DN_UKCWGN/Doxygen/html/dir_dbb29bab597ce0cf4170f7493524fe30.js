@@ -1,4 +1,0 @@
-var dir_dbb29bab597ce0cf4170f7493524fe30 =
-[
-    [ "OENIK_PROG4_2019_1_ZNN2DN_UKCWGN", "dir_f2fc5982cd09752712c29b19e3b31c49.html", "dir_f2fc5982cd09752712c29b19e3b31c49" ]
-];
